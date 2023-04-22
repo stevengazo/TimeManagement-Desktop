@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-	public class StatusItem
+	public class CategoryItem
 	{
 		[Key]
 		[Required]
-		//[DatabaseGenerated(DatabaseGeneratedOption.None)]
-		public int StatusItemId { get; set; }
-		public string Name { get; set; }
-		public ICollection<TaskItem> TaskItems { get; set; }
+		//[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public int CategoryItemId { get; set; }
+		public string Name { get;set; }
+		public ICollection<TaskItem> TaskItems { get; set;}
 	}
 }

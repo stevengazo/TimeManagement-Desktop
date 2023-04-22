@@ -1,0 +1,76 @@
+﻿<Window x:Class="Presentation.Views.AdminPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation.Views"
+        mc:Ignorable="d"
+        Title="Pagina Administradores" Height="450" Width="800">
+    <Grid Margin="0,2,0,-2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="5" >
+            <MenuItem Header="Salir" />
+        </Menu>
+        <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0">Cédula</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="3" VerticalAlignment="Center"></TextBox>
+                <Label Grid.Row="1" Grid.Column="0">Nombre</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="3" VerticalAlignment="Center"></TextBox>
+                <Label Grid.Row="2" Grid.Column="0">Apellidos</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="3" VerticalAlignment="Center"></TextBox>
+                <Label Grid.Row="3" Grid.Column="0">Contraseña</Label>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="3" VerticalAlignment="Center"></TextBox>
+                <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Margin="5">Agregar</Button>
+                    <Button Grid.Column="1" Margin="5">Limpiar</Button>
+                </Grid>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Busqueda por ID</Label>
+                <TextBox Grid.Column="1" Margin="8"></TextBox>
+                <Button  Grid.Column="2" Margin="8" >Buscar</Button>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <ListView />
+        </GroupBox>
+    </Grid>
+
+</Window>

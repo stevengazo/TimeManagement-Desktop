@@ -1,5 +1,4 @@
-﻿using Presentation.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,23 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Presentation
+namespace Presentation.Views
 {
 	/// <summary>
-	/// Interaction logic for Home.xaml
+	/// Interaction logic for AdminPage.xaml
 	/// </summary>
-	public partial class Home : Window
+	public partial class AdminPage : Window
 	{
-		public Home()
+		public AdminPage()
 		{
 			InitializeComponent();
-		}
-		private void OnAdminPage(object sender, RoutedEventArgs e)
-		{
-			var AdminPageView = new AdminPage();
-			this.Hide();
-			AdminPageView.ShowDialog();
-			this.ShowDialog();			
 		}
 	}
 }

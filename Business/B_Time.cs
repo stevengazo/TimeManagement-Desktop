@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Business
 {
-	internal class Users
+	public static class B_Time
 	{
+		public static async Task AddTime()
+		{
+
+		}
 	}
 }

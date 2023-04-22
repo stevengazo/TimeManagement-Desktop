@@ -13,7 +13,7 @@
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" >
-            <MenuItem Header="Administrador" />
+            <MenuItem Header="Administrador" Click="OnAdminPage" />
             <MenuItem Header="Ver Resumen" />
             <MenuItem Header="Acerca de .." />
         </Menu>
