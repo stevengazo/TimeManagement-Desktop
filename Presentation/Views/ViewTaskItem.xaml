@@ -1,0 +1,71 @@
+﻿<Window x:Class="Presentation.Views.ViewTaskItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation.Views"
+        mc:Ignorable="d"
+        Title="ViewTaskItem" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Grid.Column="0" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Titulo</Label>
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Fecha</Label>
+                <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Estado</Label>
+                <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Prioridad</Label>
+                <!-- datos-->
+                
+                
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="0" Background="Orange">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*" />
+                    <RowDefinition Height="0.6*" />
+                    <RowDefinition Height="0.6*" />
+                    <RowDefinition Height="0.8*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.5*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0">Inicio</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
+                <Label Grid.Row="1" Grid.Column="0">Finaliza</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
+                <Label Grid.Row="2" Grid.Column="0">Notas</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" >Agregar Tiempo</Button>
+                <Button Grid.Row="3" Grid.Column="2"  Margin="5" >Limpiar</Button>
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" >Resumen Tiempo</Label>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="0" Grid.Column="1" Background="blue" Grid.RowSpan="2">
+            <ListView />
+        </GroupBox>
+    </Grid>
+</Window>

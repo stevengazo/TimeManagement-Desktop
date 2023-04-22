@@ -1,0 +1,38 @@
+﻿<Window x:Class="Presentation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="Inicio Sesión" Height="250" Width="200" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label  x:Name="lblUsuario" Content="Usuario" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="54"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox  x:Name="txtUsuario" Text="" HorizontalAlignment="Left"  TextAlignment="Center"  TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label  x:Name="lblPassword"  HorizontalContentAlignment="Center" Content="Contraseña"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.451" Width="86"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <CheckBox  x:Name="ckBPassword" Content="Recordar" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button  x:Name="btnInicio" Content="Ingresar" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Click=" OnLoging"/>
+        </StackPanel>
+    </Grid>
+</Window>
