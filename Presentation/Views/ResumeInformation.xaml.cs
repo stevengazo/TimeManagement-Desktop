@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Presentation.Views
 		public ResumeInformation()
 		{
 			InitializeComponent();
+			chartSample.ItemsSource = B_Category.GetResumeByMonth().Result;
 		}
 	}
 }

@@ -10,6 +10,22 @@ namespace Business
 {
 	public static class B_Category
 	{
+
+		public static async Task<List<ChartItem>> GetResumeByMonth()
+		{
+			var list= new List<ChartItem>();
+			list.Add(new ChartItem()
+			{
+				Category = "sample",
+				Number = 52,
+			});
+			list.Add(new ChartItem()
+			{
+				Category = "sample 2",
+				Number = 10,
+			});
+			return list;
+		}
 		public static async Task AddCategoryAsync()
 		{
 			throw new NotImplementedException();

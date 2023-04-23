@@ -163,6 +163,12 @@ namespace Presentation
 				MessageBox.Show(ex.Message);
 			}
 		}
+
+		private void OnResumePage(object sender, RoutedEventArgs r)
+		{
+			ResumeInformation resumeInformation = new();
+			resumeInformation.ShowDialog();
+		}
 		private void BtnViewTask_Click(object sender, RoutedEventArgs e)
 		{
 		}
