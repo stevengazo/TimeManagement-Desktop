@@ -9,5 +9,6 @@ namespace Presentation
 	internal static class TempData
 	{
 		internal static int idUser { get; set; } 
+		internal static int TaskItemId { get; set; }
 	}
 }

@@ -27,22 +27,24 @@ namespace Presentation
 		private List<StatusItem> StatusItems = new();
 		private List<PriorityItem> PrioritiesItems = new();
 
-		public ICommand ViewTaskItemCommand { get; private set; }
-
 		public Home()
 		{
 			InitializeComponent();			
 			LoadTasks();
 			loadCategories();
 			LoadStatus();
-			LoadPriorities();
-
-			ViewTaskItemCommand = new CommandBinding(ViewTaskItemCommand, ViewTaskItem);
-		
+			LoadPriorities();				
 		}
-		private async void ViewTaskItem((object target, ExecutedRoutedEventArgs e))
-		{
 
+
+		private async void CanExecuteViewTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void ViewTaskItem(object target, ExecutedRoutedEventArgs e)
+		{	
+			var numberOfTask = int.Parse(e.Parameter.ToString());
+			TempData.TaskItemId = numberOfTask;
 			ViewTaskItem viewTaskItemWindow = new();
 			viewTaskItemWindow.ShowInTaskbar = false;
 			this.Hide();

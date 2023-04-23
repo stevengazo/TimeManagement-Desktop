@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Home" Height="450" Width="700">
+        Title="Inicio" Height="450" Width="700" WindowStartupLocation="CenterScreen" >
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -71,9 +74,16 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="30"    HorizontalContentAlignment="Center"  Click="BtnViewTask_Click">Ver</Button>
+                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center"  Click="BtnViewTask_Click">Ver</Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>                                
                         </GridViewColumn>
                 </GridView>
                 </ListView.View>

@@ -22,9 +22,9 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.ColumnSpan="5" >
-            <MenuItem Header="Salir" />
+            <MenuItem Header="Salir" Click="MenuItem_Click" />
         </Menu>
-        <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+        <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Header="Añadir Empleado" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -56,7 +56,7 @@
 
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" >
+        <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Header="Busqueda" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -68,7 +68,7 @@
                 <Button  Grid.Column="2" Margin="8" >Buscar</Button>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3">
+        <GroupBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3" Header="Resultados">
             <ListView />
         </GroupBox>
     </Grid>

@@ -16,14 +16,14 @@ namespace Presentation
 		}
 
 
-		private async void OnLoging(object sender, RoutedEventArgs e)
+		private  void OnLoging(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				var id = txtUsuario.Text;
 				var pass = txtPassword.Password;
 				int idUsuario = int.Parse(id);
-				bool isValid = await B_User.LogingAsync(idUsuario, pass);
+				bool isValid = B_User.LogingAsync(idUsuario, pass).Result;
 				if (isValid)
 				{
 					TempData.idUser = idUsuario;

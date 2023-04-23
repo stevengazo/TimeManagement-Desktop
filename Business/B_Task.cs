@@ -51,9 +51,20 @@ namespace Business
 				return null;
 			}
 		}
-		public static async Task<TimeItem> GetTaskItemAsync()
+		public static async Task<TaskItem> GetTaskItemAsync(int idToSearch)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					var data = await (from T in db.TaskItems where T.TaskItemId == idToSearch select T).Include(C => C.CategoryItem).Include(P => P.PriorityItem).Include(S => S.StatusItem).FirstOrDefaultAsync();
+					return data;
+				}
+			}
+			catch (Exception f)
+			{
+				return null;
+			}
 		}
 		private static async Task<int> GetLastTaskItemIdAsync()
 		{
