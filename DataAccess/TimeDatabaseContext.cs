@@ -18,7 +18,7 @@ namespace DataAccess
 		public DbSet<TaskItem> TaskItems { get; set; }
 		public DbSet<TimeItem> TimeItems { get; set; }	
 		public DbSet<User> Users { get; set; }
-		private void GetConnectionString(string connectionStringName = "DBTasks")
+		private void GetConnectionString()
 		{
 			StringConnection = XMLConfigurations.LeerCadenaDeConexion();
 		}
