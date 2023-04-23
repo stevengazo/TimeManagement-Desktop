@@ -77,21 +77,34 @@
                 </Grid>
 
                 <Label Grid.Row="2" Grid.Column="0">Notas</Label>
-                <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
-                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Center" >Agregar Tiempo</Button>
-                <Button Grid.Row="3" Grid.Column="2"  Margin="5" >Limpiar</Button>
+                <TextBox x:Name="txtNotes" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="8" HorizontalAlignment="Center" Click="AddTime_Click">Agregar Tiempo</Button>
+                <Button Grid.Row="3" Grid.Column="2"  Margin="8" Click="Limpiar_Click" >Limpiar</Button>
                 <!-- Resumen-->
                 <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" >Resumen Tiempo</Label>
                 <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >Horas</Label>
-                <Label Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >N Horas</Label>
+                <Label Name="lblHoras" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >N Horas</Label>
                 <Label Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >Dias</Label>
-                <Label Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >N dias</Label>
+                <Label Name="lblDias" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >N dias</Label>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Padding="5">
             <ListView Name="listViewTimeItems">
-
-
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Inicial" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:dd/MMM/yyyy a\\t h:mm tt}'}"/>
+                        <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:HH-mm-ss }'}" />
+                        <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}" />
+                        <GridViewColumn Header="Minutos" Width="40" DisplayMemberBinding="{Binding Minutes}" />
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnViewTask"  Width="50" HorizontalContentAlignment="Center" Background="Red" Foreground="White" >Eliminar</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
             </ListView>
         </GroupBox>
     </Grid>

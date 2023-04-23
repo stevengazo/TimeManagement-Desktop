@@ -57,7 +57,7 @@ namespace Business
 			{
 				using (TimeDatabaseContext db = new())
 				{
-					var data = await (from T in db.TaskItems where T.TaskItemId == idToSearch select T).Include(C => C.CategoryItem).Include(P => P.PriorityItem).Include(S => S.StatusItem).FirstOrDefaultAsync();
+					var data = await (from T in db.TaskItems where T.TaskItemId == idToSearch select T).Include(C => C.CategoryItem).Include(P => P.PriorityItem).Include(S => S.StatusItem).Include(D=>D.TimeItems).FirstOrDefaultAsync();
 					return data;
 				}
 			}
