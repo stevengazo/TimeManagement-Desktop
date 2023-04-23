@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using DataAccess;
+using Models;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -24,7 +25,16 @@ namespace Business
 		}
 		public static async Task<List<PriorityItem>> ListPrioritiesAsync()
 		{
-			throw new NotImplementedException();
+			try
+			{
+				using (var db = new TimeDatabaseContext())
+				{
+					return db.PriorityItems.ToList();
+				}
+			}catch(Exception f)
+			{
+				return null;
+			}
 		}
 		public static async Task<PriorityItem> GetPriorityAsync()
 		{

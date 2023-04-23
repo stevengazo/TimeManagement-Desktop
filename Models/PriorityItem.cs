@@ -12,7 +12,7 @@ namespace Models
 	{
 		[Key]
 		[Required]
-		//[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int PriorityItemId { get; set; }
 		public string Name { get; set; }
 		public ICollection<TaskItem> TaskItems { get; set; }

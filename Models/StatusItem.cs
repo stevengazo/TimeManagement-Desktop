@@ -12,7 +12,7 @@ namespace Models
 	{
 		[Key]
 		[Required]
-		//[DatabaseGenerated(DatabaseGeneratedOption.None)]
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int StatusItemId { get; set; }
 		public string Name { get; set; }
 		public ICollection<TaskItem> TaskItems { get; set; }

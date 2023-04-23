@@ -25,10 +25,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.CategoryItem", b =>
                 {
                     b.Property<int>("CategoryItemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryItemId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -42,10 +39,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.PriorityItem", b =>
                 {
                     b.Property<int>("PriorityItemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriorityItemId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -59,10 +53,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.StatusItem", b =>
                 {
                     b.Property<int>("StatusItemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusItemId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -76,10 +67,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.TaskItem", b =>
                 {
                     b.Property<int>("TaskItemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskItemId"));
 
                     b.Property<int>("CategoryItemId")
                         .HasColumnType("int");
@@ -126,10 +114,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.TimeItem", b =>
                 {
                     b.Property<int>("TimeItemId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimeItemId"));
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
@@ -154,10 +139,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.User", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");

@@ -12,7 +12,7 @@ namespace Models
 	{
 		[Key]
 		[Required]
-		//[DatabaseGenerated(DatabaseGeneratedOption.None)]
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int TaskItemId { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
@@ -24,7 +24,9 @@ namespace Models
 		public StatusItem StatusItem { get; set; }
 		public int StatusItemId { get; set; }
 		public User User { get; set; }
-		public int UserId { get; set; }	
+		public int UserId { get; set; }
+		public PriorityItem PriorityItem { get; set; }
+		public int PriorityItemId { get; set; }
 		public ICollection<TimeItem> TimeItems { get; set; }
 
 	}

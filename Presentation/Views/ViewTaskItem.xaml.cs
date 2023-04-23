@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Business;
+using Models;
 
 namespace Presentation.Views
 {
@@ -19,9 +21,11 @@ namespace Presentation.Views
 	/// </summary>
 	public partial class ViewTaskItem : Window
 	{
+		
 		public ViewTaskItem()
 		{
 			InitializeComponent();
 		}
+	
 	}
 }

@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using DataAccess;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,17 @@ namespace Business
 		}
 		public static async Task<List<StatusItem>> ListStatusAsync()
 		{
-			throw new NotImplementedException();
+			try
+			{
+				using (var db = new TimeDatabaseContext())
+				{
+					return db.StatusItems.ToList();
+				}
+			}
+			catch (Exception f)
+			{
+				return null;
+			}
 		}
 		public static async Task<StatusItem> GetStatusItemAsync()
 		{

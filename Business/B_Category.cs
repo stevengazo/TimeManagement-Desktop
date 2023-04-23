@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess;
 
 namespace Business
 {
@@ -15,7 +16,16 @@ namespace Business
 		}
 		public static async Task<List<CategoryItem>> ListCategoriesAsync()
 		{
-			throw new NotImplementedException();
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					return db.CategoryItems.ToList();
+				}
+
+			}catch(Exception ex) {
+				return null;
+			}
 		}
 		public static async Task EditCategoryAsync()
 		{
