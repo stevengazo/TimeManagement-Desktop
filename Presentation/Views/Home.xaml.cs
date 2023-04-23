@@ -49,7 +49,6 @@ namespace Presentation
 			viewTaskItemWindow.ShowInTaskbar = false;
 			this.Hide();
 			viewTaskItemWindow.ShowDialog();
-			this.Show();
 		}
 
 		private async void CleanInputs(object sender, RoutedEventArgs e)
