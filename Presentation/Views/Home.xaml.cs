@@ -22,17 +22,78 @@ namespace Presentation
 	/// </summary>
 	public partial class Home : Window
 	{
-		private List<TaskItem> TasksList = new List<TaskItem>();
+		public List<TaskItem> TasksList = new List<TaskItem>();
 		private List<CategoryItem> categoryItems = new();
 		private List<StatusItem> StatusItems = new();
 		private List<PriorityItem> PrioritiesItems = new();
+
+		public ICommand ViewTaskItemCommand { get; private set; }
+
 		public Home()
 		{
-			InitializeComponent();
+			InitializeComponent();			
 			LoadTasks();
 			loadCategories();
 			LoadStatus();
 			LoadPriorities();
+
+			ViewTaskItemCommand = new CommandBinding(ViewTaskItemCommand, ViewTaskItem);
+		
+		}
+		private async void ViewTaskItem((object target, ExecutedRoutedEventArgs e))
+		{
+
+			ViewTaskItem viewTaskItemWindow = new();
+			viewTaskItemWindow.ShowInTaskbar = false;
+			this.Hide();
+			viewTaskItemWindow.ShowDialog();
+			this.Show();
+		}
+
+		private async void CleanInputs(object sender, RoutedEventArgs e)
+		{
+			CleanInputs();
+		}
+		private async void CleanInputs()
+		{
+			txtTitle.Text = string.Empty;
+			txtDescription.Text = string.Empty;
+			cbCategory.SelectedIndex = -1;
+			cbPriority.SelectedIndex = -1;
+			cbStatus.SelectedIndex = -1;
+			dptDate.SelectedDate = DateTime.Today;
+		}
+		private async void AddTaskItem(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(txtTitle.Text))
+				{
+					MessageBox.Show("Verifique los datos");
+				}
+				else
+				{
+					var TaskItem = new TaskItem();
+					TaskItem.Title = txtTitle.Text;
+					TaskItem.Description = txtDescription.Text;
+					TaskItem.CreationDate = (DateTime)dptDate.SelectedDate;
+					TaskItem.LastEditionDate = DateTime.Today;
+					TaskItem.StatusItemId = (from s in StatusItems where s.Name.Equals(cbStatus.Text) select s.StatusItemId).FirstOrDefault();
+					TaskItem.PriorityItemId = (from s in PrioritiesItems where s.Name.Equals(cbPriority.Text) select s.PriorityItemId).FirstOrDefault();
+					TaskItem.CategoryItemId = (from s in categoryItems where s.Name.Equals(cbCategory.Text) select s.CategoryItemId).FirstOrDefault();
+					TaskItem.IsEnable = true;
+					TaskItem.UserId = TempData.idUser;
+					var isRegister = await B_Task.AddTaskItemAsync(TaskItem);
+					if (isRegister)
+					{
+						await LoadTasks();
+						CleanInputs();
+					}
+				}
+			}catch(Exception f)
+			{
+				MessageBox.Show($"Error: {f.Message}", "Error Añadir Tarea", MessageBoxButton.OK);
+			}
 		}
 		private void OnAdminPage(object sender, RoutedEventArgs e)
 		{
@@ -93,10 +154,7 @@ namespace Presentation
 			try
 			{
 				TasksList = await B_Task.ListTaskItemsAsync();
-				if (TasksList.Count > 0)
-				{
-					listViewTaskItems.ItemsSource = TasksList;
-				}
+				listViewTaskItems.ItemsSource = TasksList;
 			}
 			catch (Exception ex)
 			{
@@ -105,11 +163,6 @@ namespace Presentation
 		}
 		private void BtnViewTask_Click(object sender, RoutedEventArgs e)
 		{
-			ViewTaskItem viewTaskItemWindow = new();
-			viewTaskItemWindow.ShowInTaskbar = false;
-			this.Hide();
-			viewTaskItemWindow.ShowDialog();
-			this.Show();
 		}
 	}
 }

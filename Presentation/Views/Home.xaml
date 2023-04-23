@@ -43,7 +43,7 @@
                 <Label  Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">Descripción</Label>
                 <TextBox Grid.Row="0" Grid.Column="5" Width="100" x:Name="txtDescription" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
                 <Label  Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Fecha</Label>
-                <DatePicker Grid.Row="0" Grid.Column="3" Width="100" />
+                <DatePicker Name="dptDate" Grid.Row="0" Grid.Column="3" Width="100" />
                 <Label  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Estado</Label>
                 <ComboBox Name="cbStatus" Grid.Row="2" Grid.Column="3" Width="100" Height="20" />
                 <Label  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Prioridad</Label>
@@ -55,8 +55,8 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Button  Grid.Column="0" Width="60" Height="20" >Agregar</Button>
-                    <Button  Grid.Column="1" Width="60" Height="20" >Cancelar</Button>
+                    <Button  Grid.Column="0" Width="60" Height="20" Click="AddTaskItem" >Agregar</Button>
+                    <Button  Grid.Column="1" Width="60" Height="20" Click="CleanInputs" >Cancelar</Button>
                 </Grid>
             </Grid>
         </GroupBox>
@@ -71,7 +71,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="BtnViewTask" Content="Ver" Width="30" HorizontalContentAlignment="Center"  Click="BtnViewTask_Click"/>
+                                    <Button Name="BtnViewTask"  Width="30"    HorizontalContentAlignment="Center"  Click="BtnViewTask_Click">Ver</Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

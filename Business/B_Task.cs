@@ -12,9 +12,23 @@ namespace Business
 {
 	public static class B_Task
 	{
-		public static async Task AddTaskItemAsync()
+		public static async Task<bool> AddTaskItemAsync(TaskItem item)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var id = await GetLastTaskItemIdAsync();
+				using (TimeDatabaseContext db = new())
+				{
+					item.TaskItemId = id + 1;
+					db.TaskItems.Add(item);
+					await db.SaveChangesAsync();
+					return true;
+				}
+			}
+			catch (Exception f)
+			{
+				return false;
+			}
 		}
 		public static async Task EditTaskItemAsync()
 		{
@@ -41,9 +55,20 @@ namespace Business
 		{
 			throw new NotImplementedException();
 		}
-		private static async Task<int> GetTimeItemIdAsync()
+		private static async Task<int> GetLastTaskItemIdAsync()
 		{
-			throw new NotImplementedException();
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					var number =await (from T in db.TaskItems orderby T.TaskItemId descending select T.TaskItemId).FirstOrDefaultAsync();
+					return number;
+				}
+			}
+			catch (Exception f)
+			{
+				return -5;
+			}
 		}
 	}
 }
