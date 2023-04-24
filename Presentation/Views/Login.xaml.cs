@@ -14,8 +14,6 @@ namespace Presentation
 		{
 			InitializeComponent();
 		}
-
-
 		private  void OnLoging(object sender, RoutedEventArgs e)
 		{
 			try
@@ -40,7 +38,14 @@ namespace Presentation
 			{
 				MessageBox.Show($"Error: {ef.Message}");
 			}
-			
+		}
+		private async Task SaveCredentialsAsync()
+		{
+			throw new NotImplementedException();
+		}
+		private async Task LoadCredentialsAsync()
+		{
+			throw new NotImplementedException();
 		}
 
 

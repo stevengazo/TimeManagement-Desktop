@@ -16,8 +16,17 @@
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" >
-            <MenuItem Header="Administrador" Click="OnAdminPage" />
-            <MenuItem Header="Ver Resumen" Click="OnResumePage" />
+            <MenuItem Header="_Archivo">
+                <MenuItem Header="Cambiar Contraseña" />
+                <Separator/>
+                <MenuItem Header="Salir" />
+            </MenuItem>
+            <MenuItem Header="_Administración">
+                <MenuItem Header="Usuarios" Click="OnAdminPage" />
+                <Separator/>
+                <MenuItem Header="Gráficos" Click="OnResumePage" />
+                <MenuItem Header="Exportado" />
+            </MenuItem>
             <MenuItem Header="Acerca de .." />
         </Menu>
         <GroupBox Grid.Row="1" x:Name="groupBoxTarea" Header="Registro Tarea" >
@@ -75,6 +84,13 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center"  Click="BtnViewTask_Click">Ver</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

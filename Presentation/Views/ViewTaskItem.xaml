@@ -92,14 +92,21 @@
             <ListView Name="listViewTimeItems">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Inicial" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:dd/MMM/yyyy a\\t h:mm tt}'}"/>
-                        <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:HH-mm-ss }'}" />
-                        <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}" />
-                        <GridViewColumn Header="Minutos" Width="40" DisplayMemberBinding="{Binding Minutes}" />
+                        <GridViewColumn Header="Inicial" Width="160" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:dd/MMM/yyyy a\\t h:mm tt}'}"/>
+                        <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0: h:mm tt }'}" />
+                        <GridViewColumn Header="Horas" Width="60" DisplayMemberBinding="{Binding Hours}" />
+                        <GridViewColumn Header="Minutos" Width="80" DisplayMemberBinding="{Binding Minutes}" />
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="50" HorizontalContentAlignment="Center" Background="Red" Foreground="White" >Eliminar</Button>
+                                    <Button Name="BtnViewTask"  Width="60" HorizontalContentAlignment="Center" Background="Red" Foreground="White" >Eliminar</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnEditTime"  Width="60" HorizontalContentAlignment="Center" Background="Green" Foreground="White" >Editar</Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

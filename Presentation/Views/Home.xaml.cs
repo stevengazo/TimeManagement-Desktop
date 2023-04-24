@@ -45,10 +45,8 @@ namespace Presentation
 		{	
 			var numberOfTask = int.Parse(e.Parameter.ToString());
 			TempData.TaskItemId = numberOfTask;
-			ViewTaskItem viewTaskItemWindow = new();
-			viewTaskItemWindow.ShowInTaskbar = false;
-			this.Hide();
-			viewTaskItemWindow.ShowDialog();
+			ViewTaskItem viewTaskItemWindow = new();	
+			viewTaskItemWindow.ShowDialog();			
 		}
 
 		private async void CleanInputs(object sender, RoutedEventArgs e)
@@ -99,9 +97,7 @@ namespace Presentation
 		private void OnAdminPage(object sender, RoutedEventArgs e)
 		{
 			var AdminPageView = new AdminPage();
-			this.Hide();
-			AdminPageView.ShowDialog();
-			this.ShowDialog();			
+			AdminPageView.ShowDialog();			
 		}
 		private async Task LoadPriorities()
 		{
