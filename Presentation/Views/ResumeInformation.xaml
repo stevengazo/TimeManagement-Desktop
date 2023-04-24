@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views" 
-        xmlns:chart="clr-namespace:Charts.WPF.ChartControls;assembly=Charts.WPF"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="Resumen de Información" Height="500" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -18,12 +18,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Grid.Column="0"  Header="Resumen del Mes">
-            <chart:ChartSeries
-                    SeriesTitle="Elementos Por Categoría"
-                    Name="chartSample"
-                    DisplayMember="Category"
-                    ValueMember="Number"    
-                    />
+            <lvc:CartesianChart Name="chartItem"/>
         </GroupBox>
         <GroupBox Grid.Row="0" Grid.Column="1" Background="Green" Header="Resumen - ">
 
