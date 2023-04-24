@@ -25,6 +25,7 @@
                 <MenuItem Header="Usuarios" Click="OnAdminPage" />
                 <Separator/>
                 <MenuItem Header="Gráficos" Click="OnResumePage" />
+                <MenuItem Header="Rendimiento" />
                 <MenuItem Header="Exportado" />
             </MenuItem>
             <MenuItem Header="Acerca de .." />
