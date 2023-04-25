@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,18 @@ namespace Presentation.Views
 		public AdminPage()
 		{
 			InitializeComponent();
+			LoadUsersAsync();
+		}
+
+		private async void LoadUsersAsync()
+		{
+			try
+			{
+				listViewUsers.ItemsSource = await B_User.ListUsersAsync();
+			}catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 
 		private void MenuItem_Click(object sender, RoutedEventArgs e)

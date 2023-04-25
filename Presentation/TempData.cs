@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace Presentation
 	{
 		internal static int idUser { get; set; } 
 		internal static int TaskItemId { get; set; }
+		internal static User User { get; set; }	
 	}
 }

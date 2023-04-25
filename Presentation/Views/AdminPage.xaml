@@ -69,7 +69,37 @@
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3" Header="Resultados">
-            <ListView />
+            <ListView x:Name="listViewUsers">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Cédula" Width="111" DisplayMemberBinding="{Binding UserId}"/>
+                        <GridViewColumn Header="Nombre" Width="111" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Administrador" Width="111" DisplayMemberBinding="{Binding IsEnable}"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnEdit"  Width="50"  HorizontalContentAlignment="Center" >Ver</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnChangePassword"  Width="50" HorizontalContentAlignment="Center" >Contraseña</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnAdmin"  Width="50" HorizontalContentAlignment="Center" >Desactivar</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>                        
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
         </GroupBox>
     </Grid>
 

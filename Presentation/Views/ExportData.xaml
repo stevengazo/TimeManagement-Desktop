@@ -7,6 +7,41 @@
         mc:Ignorable="d"
         Title="Exportar Datos" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Background="AliceBlue" Header="Filtros de Busqueda">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.7*" />
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Categoría" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="1" Margin="5" />
+                <Label Grid.Column="2" Content="Usuario"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="3" Margin="5" />
+                <Label Grid.Column="4" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Grid.Column="5" Margin="5" />
+                <Button Grid.Column="6" Margin="5" Content="Buscar" />
+                <Button Grid.Column="7" Margin="5" Content="Exportar" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="Consultas">
+            <ListView x:Name="listView" Margin="6" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </GroupBox>
     </Grid>
 </Window>

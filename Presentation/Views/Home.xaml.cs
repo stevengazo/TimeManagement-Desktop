@@ -94,10 +94,39 @@ namespace Presentation
 				MessageBox.Show($"Error: {f.Message}", "Error Añadir Tarea", MessageBoxButton.OK);
 			}
 		}
+		private void OnPerfomancePage(object sender, RoutedEventArgs e)
+		{
+			if (TempData.User.IsAdmin)
+			{
+				PerformanceTaskPage performanceTaskPage = new();
+				performanceTaskPage.ShowDialog();
+			}
+			{
+				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+		}
+		private void OnExportPage(object sender, RoutedEventArgs e)
+		{
+			if (TempData.User.IsAdmin)
+			{
+				ExportData exportDataWindow = new();
+				exportDataWindow.ShowDialog();
+			}
+			{
+				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+		}
 		private void OnAdminPage(object sender, RoutedEventArgs e)
 		{
-			var AdminPageView = new AdminPage();
-			AdminPageView.ShowDialog();			
+			if (TempData.User.IsAdmin)
+			{
+				var AdminPageView = new AdminPage();
+				AdminPageView.ShowDialog();
+			}
+			else
+			{
+				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
 		}
 		private async Task LoadPriorities()
 		{
@@ -150,7 +179,7 @@ namespace Presentation
 		{
 			try
 			{
-				TasksList = await B_Task.ListTaskItemsAsync();
+				TasksList = await B_Task.ListTaskItemsAsync(TempData.User.UserId);
 				listViewTaskItems.ItemsSource = TasksList;
 			}
 			catch (Exception ex)

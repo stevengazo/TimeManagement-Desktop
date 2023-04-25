@@ -25,8 +25,8 @@
                 <MenuItem Header="Usuarios" Click="OnAdminPage" />
                 <Separator/>
                 <MenuItem Header="Gráficos" Click="OnResumePage" />
-                <MenuItem Header="Rendimiento" />
-                <MenuItem Header="Exportado" />
+                <MenuItem Header="Rendimiento" Click="OnPerfomancePage" />
+                <MenuItem Header="Exportado" Click="OnExportPage" />
             </MenuItem>
             <MenuItem Header="Acerca de .." />
         </Menu>
@@ -81,28 +81,28 @@
                     <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:dd-MM-yyyy }'}"/>
                     <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding StatusItem.Name}"/>
                     <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding PriorityItem.Name}"/>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center"  Click="BtnViewTask_Click">Ver</Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center"  Click="BtnViewTask_Click">Ver</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White"/>
                                 </DataTemplate>
-                            </GridViewColumn.CellTemplate>                                
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                </GridView>
+                    </GridView>
                 </ListView.View>
             </ListView>
         </GroupBox>

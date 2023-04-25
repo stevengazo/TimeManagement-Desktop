@@ -51,6 +51,20 @@ namespace Business
 				return null;
 			}
 		}
+		public static async Task<List<TaskItem>> ListTaskItemsAsync(int idUser)
+		{
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					return db.TaskItems.Where(T=>T.UserId == idUser).Include(C => C.CategoryItem).Include(P => P.PriorityItem).Include(S => S.StatusItem).ToList();
+				}
+			}
+			catch (Exception f)
+			{
+				return null;
+			}
+		}
 		public static async Task<TaskItem> GetTaskItemAsync(int idToSearch)
 		{
 			try

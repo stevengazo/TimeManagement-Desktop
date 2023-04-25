@@ -49,6 +49,7 @@ namespace Business
 				User usertmp = new();
 				using (TimeDatabaseContext db = new()) {
 					usertmp = await (from i in db.Users where i.UserId == UserId select i).FirstOrDefaultAsync();
+
 					return usertmp;
 				}
 			}

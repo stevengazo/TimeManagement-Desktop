@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="ViewUser" Height="450" Width="800">
+        Title="Ver Usuario" Height="450" Width="800" ResizeMode="NoResize" SizeToContent="Height" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />            
+        </Grid.ColumnDefinitions>
     </Grid>
 </Window>
