@@ -88,6 +88,7 @@ namespace Presentation
 				}
 				txtPassword.Password = password;
 				txtUsuario.Text = userId;
+				ckBPassword.IsChecked = true;
 			}
 		}
 	}

@@ -82,10 +82,17 @@ namespace Presentation.Views
 				List<TimeItemWithQuantity> listTimes = new() ;
 				foreach (var item in viewTaskItem.TimeItems)
 				{
+
+					TimeSpan TimeWorked = (item.EndTime - item.StartTime);
+					var Hours = TimeWorked.Hours;
+					var totalMinutes = Convert.ToInt16(TimeWorked.TotalMinutes);
+					var Minutes = TimeWorked.Minutes - (TimeWorked.Minutes *60);
+
+
 					TimeItemWithQuantity i = new() {
 						TimeItemId = item.TimeItemId,
-						Hours = item.EndTime.Hour - item.StartTime.Hour,
-						Minutes = item.EndTime.Minute - item.StartTime.Minute,
+						Hours = Hours,
+						Minutes = Minutes,
 						StartTime = item.StartTime,
 						EndTime = item.EndTime						
 					};
