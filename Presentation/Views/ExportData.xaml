@@ -24,11 +24,11 @@
                     <ColumnDefinition Width="0.5*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Categoría" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox Grid.Column="1" Margin="5" />
+                <ComboBox Name="cbCategory" Grid.Column="1" Margin="5" />
                 <Label Grid.Column="2" Content="Usuario"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox Grid.Column="3" Margin="5" />
+                <ComboBox Name="cbUsers" Grid.Column="3" Margin="5" />
                 <Label Grid.Column="4" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox Grid.Column="5" Margin="5" />
+                <ComboBox Name="cbMonth" Grid.Column="5" Margin="5" />
                 <Button Grid.Column="6" Margin="5" Content="Buscar" />
                 <Button Grid.Column="7" Margin="5" Content="Exportar" />
             </Grid>

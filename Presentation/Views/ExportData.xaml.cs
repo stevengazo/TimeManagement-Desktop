@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace Presentation.Views
 		public ExportData()
 		{
 			InitializeComponent();
+
+			LoadData();
+		}
+		private void LoadData()
+		{
+	
+
 		}
 	}
 }
