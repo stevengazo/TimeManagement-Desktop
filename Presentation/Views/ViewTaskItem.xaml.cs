@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +32,16 @@ namespace Presentation.Views
 			LoadTask();
 			LoadCombobox();
 		}
+		private async void SearchDate_Click(object sender, RoutedEventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+		private async void CleanSearch_Click(object sender, RoutedEventArgs e)
+		{
+			dtpSearchDate.SelectedDate = DateTime.Today;
+			LoadTask();
+		}
 
-		
 		private void LoadCombobox()
 		{
 			for (int i = 0; i <= 23; i++)

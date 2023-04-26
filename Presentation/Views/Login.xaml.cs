@@ -30,7 +30,7 @@ namespace Presentation
 				bool isValid = B_User.LogingAsync(idUsuario, pass).Result;
 				if (isValid)
 				{
-					TempData.User = await B_User.GetUserAsync(idUsuario);
+					TempData.CurrentUser = await B_User.GetUserAsync(idUsuario);
 					TempData.idUser = idUsuario;
 					var viewHome = new Home();
 					// Save values

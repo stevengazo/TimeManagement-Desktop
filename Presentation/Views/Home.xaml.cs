@@ -32,8 +32,8 @@ namespace Presentation
 			InitializeComponent();			
 			LoadTasks();
 			loadCategories();
-			LoadStatus();
-			LoadPriorities();				
+			LoadPriorities();
+			LoadStatus();							
 		}
 
 
@@ -96,7 +96,7 @@ namespace Presentation
 		}
 		private void OnPerfomancePage(object sender, RoutedEventArgs e)
 		{
-			if (TempData.User.IsAdmin)
+			if (TempData.CurrentUser.IsAdmin)
 			{
 				PerformanceTaskPage performanceTaskPage = new();
 				performanceTaskPage.ShowDialog();
@@ -107,7 +107,7 @@ namespace Presentation
 		}
 		private void OnExportPage(object sender, RoutedEventArgs e)
 		{
-			if (TempData.User.IsAdmin)
+			if (TempData.CurrentUser.IsAdmin)
 			{
 				ExportData exportDataWindow = new();
 				exportDataWindow.ShowDialog();
@@ -118,7 +118,7 @@ namespace Presentation
 		}
 		private void OnAdminPage(object sender, RoutedEventArgs e)
 		{
-			if (TempData.User.IsAdmin)
+			if (TempData.CurrentUser.IsAdmin)
 			{
 				var AdminPageView = new AdminPage();
 				AdminPageView.ShowDialog();
@@ -179,7 +179,7 @@ namespace Presentation
 		{
 			try
 			{
-				TasksList = await B_Task.ListTaskItemsAsync(TempData.User.UserId);
+				TasksList = await B_Task.ListTaskItemsAsync(TempData.CurrentUser.UserId);
 				listViewTaskItems.ItemsSource = TasksList;
 			}
 			catch (Exception ex)

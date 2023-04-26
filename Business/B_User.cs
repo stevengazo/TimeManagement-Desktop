@@ -16,7 +16,6 @@ namespace Business
 		{
 			try
 			{
-				user.UserId = await GetLastUserIdAsync() + 1;
 				if(user.UserId >= 0) {
 
 					user.IsArchive = false;
@@ -49,7 +48,6 @@ namespace Business
 				User usertmp = new();
 				using (TimeDatabaseContext db = new()) {
 					usertmp = await (from i in db.Users where i.UserId == UserId select i).FirstOrDefaultAsync();
-
 					return usertmp;
 				}
 			}
@@ -151,6 +149,36 @@ namespace Business
 				Console.WriteLine($"Error GetUser: {ex.Message}");
 			}
 		}
+		public static async Task<bool> ExistsId(int idToSearch)
+		{
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					var idSearched = (	from i in db.Users
+										where i.UserId == idToSearch
+										select i).Count();
+					if(idSearched> 0)
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+					
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error GetUser: {ex.Message}");
+				return true;
+			}
+
+		}
+
+
+
 		public static async Task<int> GetLastUserIdAsync()
 		{
 			try

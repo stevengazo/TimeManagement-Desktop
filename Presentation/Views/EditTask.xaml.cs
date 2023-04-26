@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +24,24 @@ namespace Presentation.Views
 		public EditTask()
 		{
 			InitializeComponent();
+			LoadDataAsync();
+		}
+
+		private async Task LoadDataAsync()
+		{
+			try
+			{
+				if (!TempData.CurrentUser.IsAdmin)
+				{
+					datePickerCreationDate.IsEnabled = false;					
+					cbEmployee.IsEnabled = false;
+				}
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+				this.Close();
+			}
 		}
 	}
 }

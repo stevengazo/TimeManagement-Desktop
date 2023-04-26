@@ -5,17 +5,117 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Ver Usuario" Height="450" Width="800" ResizeMode="NoResize" SizeToContent="Height" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Ver Usuario" Height="450" Width="800" ResizeMode="NoResize" SizeToContent="Height" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="450">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
+    </Window.CommandBindings>        
+    <Grid Background="DarkBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.6*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />            
+            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
+        <GroupBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Header="Información de Usuario" Foreground="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="0.5*" />
+                        <ColumnDefinition  Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Id" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Nombre" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="Apellidos" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox Name="txtIdUser" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
+                    <TextBox Name="txtName" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
+                    <TextBox Name="txtLastName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
+                    <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="3"  Content="Editar" Click="EditUser_Click" />
+                    <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="4"  Content="Desactivar Usuario" Click="DisableUser_Click" />
+                    <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="5"  Content="Cambiar Rol" Click="ChangeAdminRol_Click" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Header="Información de Usuario" Foreground="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0" Header="Filtros">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="0.8*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="0.8*" />                            
+                            <ColumnDefinition Width="1.2*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Categoria" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ComboBox Name="cbCategory" Grid.Column="1" Margin="5" />
+                        <Label Grid.Column="2" Content="Prioridad" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ComboBox Name="cbPriority" Grid.Column="3" Margin="5" />
+                        <Label  Grid.Column="4" Content="Tiempos" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                        <DatePicker Name="dtpSearchDate" Grid.Column="5" Margin="5" />
+                        <Button Grid.Column="6" Content="Buscar" Margin="5" Click="Seach_Click" />
+                        <Button Grid.Column="7" Content="Exportar" Margin="5" Click="Export_Click" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="1" Header="Tareas asociadas">
+                    <ListView  Name="listViewTaskItems" Margin="5" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
+                                <GridViewColumn Header="Fecha Registro" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:dd-MM-yyyy }'}"/>
+                                <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding StatusItem.Name}"/>
+                                <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding PriorityItem.Name}"/>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
