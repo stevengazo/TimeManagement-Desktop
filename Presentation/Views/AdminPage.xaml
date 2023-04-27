@@ -65,10 +65,12 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Busqueda por ID</Label>
-                <TextBox Grid.Column="1" Margin="8"></TextBox>
-                <Button  Grid.Column="2" Margin="8" >Buscar</Button>
+                <TextBox x:Name="txtIdUserToSearch" Grid.Column="1" Margin="8"></TextBox>
+                <Button  Grid.Column="2" Margin="8" Click="SearchUser_Click" >Buscar</Button>
+                <Button  Grid.Column="3" Margin="8"  Click="LoadUsers_Click" >Limpiar</Button>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3" Header="Resultados">

@@ -1,4 +1,5 @@
 ﻿using Business;
+using Microsoft.VisualBasic;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,20 @@ namespace Presentation.Views
 			loadCategories();
 			LoadPriorities();
 		}
+		private async void CanModificateViewTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
 		private async void CanExecuteViewTask(object target, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = true;
+		}
+		private async void ViewEditItem(object target, ExecutedRoutedEventArgs e)
+		{
+			var numberOfTask = int.Parse(e.Parameter.ToString());
+			TempData.TaskItemId = numberOfTask;
+			EditTask editTaskWindow = new EditTask();
+			editTaskWindow.ShowDialog();
 		}
 		private async Task LoadPriorities()
 		{
@@ -79,7 +91,7 @@ namespace Presentation.Views
 		{
 			try
 			{
-				TasksList = await B_Task.ListTaskItemsAsync(TempData.UserToReview.UserId);
+				TasksList = await B_Task.ListTaskItemsAsync(TempData.UserToReview.UserId, true);
 				listViewTaskItems.ItemsSource = TasksList;
 			}
 			catch (Exception ex)
@@ -89,11 +101,28 @@ namespace Presentation.Views
 		}
 		private async Task loadDataAsync()
 		{
-			if(TempData.UserToReview != null)
+			if (TempData.UserToReview != null)
 			{
 				txtIdUser.Text = TempData.UserToReview.UserId.ToString();
 				txtName.Text = TempData.UserToReview.Name.ToString();
 				txtLastName.Text = TempData.UserToReview.LastName.ToString();
+				if (TempData.UserToReview.IsEnable)
+				{
+					btnLoginState.Content = "Desactivar Usuario";
+				}
+				else
+				{
+					btnLoginState.Content = "Activar Usuario";
+				}
+
+				if (TempData.UserToReview.IsAdmin)
+				{
+					btnAdminState.Content = "Desactivar rol";
+				}
+				else
+				{
+					btnAdminState.Content = "Activar rol";
+				}
 				await LoadTasks();
 			}
 		}
@@ -103,11 +132,11 @@ namespace Presentation.Views
 			try
 			{
 				/// Validate Data
-				
+
 				// Search
 
 				// LoadResults
-			}catch(Exception f)
+			} catch (Exception f)
 			{
 				MessageBox.Show(f.Message);
 			}
@@ -118,11 +147,61 @@ namespace Presentation.Views
 		}
 		private async void ChangeAdminRol_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+			if (TempData.UserToReview.IsAdmin)
+			{
+				var isDisable = await B_User.AdminRolStateAsync(TempData.UserToReview.UserId, false);
+				if (isDisable == true)
+				{
+					MessageBox.Show("Perfil de Administrador eliminado (no podra hacer cambios)", "Informacion", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+					btnAdminState.Content = "Añadir rol";
+					TempData.UserToReview.IsAdmin = false;
+				}
+			}
+			else
+			{
+				var isDisable = await B_User.AdminRolStateAsync(TempData.UserToReview.UserId, true);
+				if (isDisable == true)
+				{
+					MessageBox.Show("Perfil de adminsitrador agregado. Podra realizar cambios a los usuarios", "Informacion", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+					btnAdminState.Content = "Quitar Rol";
+					TempData.UserToReview.IsAdmin = true;
+				}
+			}
+		}
+		private async void ChangePassword_Click(object sender, RoutedEventArgs e)
+		{
+			var Password = Interaction.InputBox ("Digite la contraseña","Cambio Contraseña","");
+			if (!string.IsNullOrEmpty(Password))
+			{
+				bool isChanged = await B_User.ChangePasswordAsync(TempData.UserToReview.UserId, Password);
+				if (isChanged == true)
+				{
+					MessageBox.Show("Contraseña cambiada");
+				}
+			}
 		}
 		private async void DisableUser_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+			if (TempData.UserToReview.IsEnable)
+			{
+				var isDisable = await B_User.LoginStateAsync(TempData.UserToReview.UserId, false);
+				if (isDisable == true)
+				{
+					MessageBox.Show("Usuario Desactivado", "Informacion", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+					btnLoginState.Content = "Activar Usuario";
+					TempData.UserToReview.IsEnable = false;
+				}
+			}
+			else
+			{
+				var isDisable = await B_User.LoginStateAsync(TempData.UserToReview.UserId, true);
+				if (isDisable == true)
+				{
+					MessageBox.Show("Usuario Activado", "Informacion", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+					btnLoginState.Content = "Desactivar Usuario";
+					TempData.UserToReview.IsEnable = true;
+				}
+			}
 		}
 		private async void EditUser_Click(object sender, RoutedEventArgs e)
 		{

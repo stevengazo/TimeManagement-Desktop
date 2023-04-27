@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Windows.Media;
 using System.Runtime.Intrinsics.X86;
 using System.Windows;
+using System.Security.Cryptography;
 
 namespace Business
 {
@@ -44,6 +45,54 @@ namespace Business
 				return false;
 			}
 		}
+		public static async Task<bool> AdminRolStateAsync(int UserId, bool AdminMode = true)
+		{
+			try
+			{
+				var User = await GetUserAsync(UserId);
+				if (User != null)
+				{
+					using TimeDatabaseContext db = new TimeDatabaseContext();
+					User.IsAdmin = AdminMode;
+					db.Users.Update(User);
+					await db.SaveChangesAsync();
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error GetUser: {ex.Message}");
+				return false;
+			}
+		}
+		public static async Task<bool> LoginStateAsync(int UserId, bool CanLogin = true)
+		{
+			try
+			{
+				var User = await GetUserAsync(UserId);
+				if (User != null)
+				{
+					using TimeDatabaseContext db = new TimeDatabaseContext();
+					User.IsEnable = CanLogin;
+					db.Users.Update(User);
+					await db.SaveChangesAsync();
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error GetUser: {ex.Message}");
+				return false;
+			}
+		}
 		public static async Task<User> GetUserAsync(int UserId)
 		{
 			try
@@ -71,6 +120,7 @@ namespace Business
 					if(user != null)
 					{
 						// Hass Password	
+						user.Password = Password;	
 					}
 					db.Users.Update(user);
 					await db.SaveChangesAsync();
@@ -90,7 +140,9 @@ namespace Business
 				using( TimeDatabaseContext db = new())
 				{
 					int count = 0;
-					count = (from U in db.Users where U.UserId == id && U.Password == password select U).Count();
+					count = (from U in db.Users 
+							 where U.UserId == id && U.Password == password && U.IsEnable == true
+							 select U).Count();
 					if(count> 0)
 					{
 						return true;
@@ -105,6 +157,35 @@ namespace Business
 			{
 				Console.WriteLine($"Error GetUser: {ex.Message}");
 				return false;
+			}
+		}
+		public static async Task<Dictionary<int,string>> DicUsersAsync()
+		{
+			using TimeDatabaseContext timeDatabaseContext = new();
+			var dic = await timeDatabaseContext.Users.ToDictionaryAsync(D => D.UserId, D => D.Name);
+			return dic;
+		}
+		public static async Task<List<User>> SearchUsersAsync(int idToSearch)
+		{
+			try
+			{
+				var ListUsers = new List<User>();
+				using (TimeDatabaseContext bd = new())
+				{
+					ListUsers = (from i in bd.Users
+								 where i.UserId.ToString().Contains(idToSearch.ToString())
+								 select i).ToList();
+					foreach (var item in ListUsers)
+					{
+						item.Password = string.Empty;
+					}
+				}
+				return ListUsers;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error ListUser: {ex.Message}");
+				return null;
 			}
 		}
 		public static async Task<List<User>> ListUsersAsync()
@@ -251,9 +332,6 @@ namespace Business
 			}
 
 		}
-
-
-
 		public static async Task<int> GetLastUserIdAsync()
 		{
 			try

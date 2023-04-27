@@ -8,6 +8,8 @@
         Title="Inicio" Height="450" Width="700" WindowStartupLocation="CenterScreen" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
+        <CommandBinding Command="ApplicationCommands.Delete" Executed="DisableTaskItem" CanExecute=" CanExecuteDeleteTask" />
+        <CommandBinding Command="ApplicationCommands.Properties" Executed="EditTaskItem" CanExecute="CanExecuteEditTask" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +19,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" >
             <MenuItem Header="_Archivo">
-                <MenuItem Header="Cambiar Contraseña" />
+                <MenuItem Header="Cambiar Contraseña" Click="ChangePassword_Click" />
                 <Separator/>
                 <MenuItem Header="Salir" />
             </MenuItem>
@@ -28,7 +30,12 @@
                 <MenuItem Header="Rendimiento" Click="OnPerfomancePage" />
                 <MenuItem Header="Exportado" Click="OnExportPage" />
             </MenuItem>
-            <MenuItem Header="Acerca de .." />
+            <MenuItem Header="_Tareas">
+                <MenuItem Header="Tareas archivadas" Click="DisableTasksPage"/>
+            </MenuItem>
+            <MenuItem Header="_Ayuda">
+                <MenuItem Header="Acerca de" Click="AboutPage"/>
+            </MenuItem>
         </Menu>
         <GroupBox Grid.Row="1" x:Name="groupBoxTarea" Header="Registro Tarea" >
             <Grid>
@@ -91,14 +98,14 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White"/>
+                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White"/>
+                                    <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

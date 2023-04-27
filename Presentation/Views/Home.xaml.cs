@@ -1,4 +1,5 @@
 ﻿using Business;
+using Microsoft.VisualBasic;
 using Models;
 using Presentation.Views;
 using System;
@@ -36,17 +37,70 @@ namespace Presentation
 			LoadStatus();							
 		}
 
-
+		#region Applications Commands
 		private async void CanExecuteViewTask(object target, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = true;
 		}
 		private async void ViewTaskItem(object target, ExecutedRoutedEventArgs e)
-		{	
+		{
 			var numberOfTask = int.Parse(e.Parameter.ToString());
 			TempData.TaskItemId = numberOfTask;
-			ViewTaskItem viewTaskItemWindow = new();	
-			viewTaskItemWindow.ShowDialog();			
+			ViewTaskItem viewTaskItemWindow = new();
+			viewTaskItemWindow.ShowDialog();
+		}
+		private async void CanExecuteDeleteTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void CanExecuteEditTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void EditTaskItem(object target, ExecutedRoutedEventArgs args)
+		{
+			try
+			{
+				var numberOfTask = int.Parse(args.Parameter.ToString());
+				TempData.TaskItemId = numberOfTask;
+				EditTask editTask = new EditTask();
+				editTask.ShowDialog();
+				await LoadTasks();
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
+		private async void DisableTaskItem(object target, ExecutedRoutedEventArgs args)
+		{
+			try
+			{
+				var numberOfTask = int.Parse(args.Parameter.ToString());
+				bool isDisable = await B_Task.DisableTask(numberOfTask);
+				if (isDisable)
+				{
+					await LoadTasks();
+				}
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
+		#endregion
+
+		private async void ChangePassword_Click(object sender, RoutedEventArgs e)
+		{
+			var Password = Interaction.InputBox("Digite la contraseña", "Cambio Contraseña", "");
+			if (!string.IsNullOrEmpty(Password))
+			{
+				bool isChanged = await B_User.ChangePasswordAsync(TempData.CurrentUser.UserId, Password);
+				if (isChanged == true)
+				{
+					MessageBox.Show("Contraseña cambiada");
+				}
+			}
 		}
 
 		private async void CleanInputs(object sender, RoutedEventArgs e)
@@ -144,6 +198,18 @@ namespace Presentation
 				this.Close();
 			}
 		}
+		private void AboutPage(object sender, RoutedEventArgs r)
+		{
+			About aboutWindow = new About();
+			aboutWindow.ShowDialog();
+
+		}
+		private async void DisableTasksPage(object sender, RoutedEventArgs r)
+		{
+			ListTasksDisable listTasksDisableWindow = new();
+			listTasksDisableWindow.ShowDialog();
+			LoadTasks();
+		}
 		private async Task LoadStatus()
 		{
 			try
@@ -179,7 +245,7 @@ namespace Presentation
 		{
 			try
 			{
-				TasksList = await B_Task.ListTaskItemsAsync(TempData.CurrentUser.UserId);
+				TasksList = await B_Task.ListTaskItemsAsync(TempData.CurrentUser.UserId,false);
 				listViewTaskItems.ItemsSource = TasksList;
 			}
 			catch (Exception ex)
@@ -187,7 +253,6 @@ namespace Presentation
 				MessageBox.Show(ex.Message);
 			}
 		}
-
 		private void OnResumePage(object sender, RoutedEventArgs r)
 		{
 			ResumeInformation resumeInformation = new();

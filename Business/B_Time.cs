@@ -32,7 +32,6 @@ namespace Business
 				return null;
 			}
 		}
-
 		public static async Task<bool> AddTime(TimeItem timeItem)
 		{
 
@@ -51,7 +50,31 @@ namespace Business
 				MessageBox.Show($"Error: {f.Message}");
 				return false;
 			}
-
+		}
+		public static async Task<bool> DeleteTime(TimeItem timeItem)
+		{
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					db.TimeItems.Remove(timeItem);
+					await db.SaveChangesAsync();
+					return true;
+				}
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show($"Error: {f.Message}");
+				return false;
+			}
+		}
+		public static async Task<TimeItem> GetTimeItemAsync(int id)
+		{
+			using (var db = new TimeDatabaseContext())
+			{
+				var	element = await (from i in db.TimeItems where i.TimeItemId == id select i).FirstOrDefaultAsync();
+				return element ;
+			}
 		}
 		public static async Task<int> GetLastId()
 		{

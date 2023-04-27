@@ -25,16 +25,51 @@ namespace Presentation.Views
 	{
 		public  TaskItem viewTaskItem { get; set; }
 		public  float _Minutes { get; set; }
-		
 		public ViewTaskItem()
 		{
 			InitializeComponent();
 			LoadTask();
 			LoadCombobox();
 		}
+		#region applicationscommands
+		private async void CanExecuteDeleteTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
 
+		private async void DeleteTimeItem(object target, ExecutedRoutedEventArgs args)
+		{
+			try
+			{
+				var numberOfTask = int.Parse(args.Parameter.ToString());
+				var resultMessage = MessageBox.Show("Deseas borrar este tiempo?", "Advertencia",MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if(resultMessage == MessageBoxResult.Yes)
+				{
+					var time = await B_Time.GetTimeItemAsync(numberOfTask);
+					if(time != null)
+					{
+						var result = await B_Time.DeleteTime(time);
+						if (result)
+						{
+							LoadTask();
+							MessageBox.Show("Tiempo borrado");
+						}
+						else
+						{
+							MessageBox.Show("Error al borrar");
+						}
 
+					}
 
+				}
+				
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
+		#endregion
 		private async void SearchDate_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -65,7 +100,6 @@ namespace Presentation.Views
 			dtpSearchDate.SelectedDate = null;
 			LoadTask();
 		}
-
 		private void LoadCombobox()
 		{
 			for (int i = 0; i <= 23; i++)
@@ -79,7 +113,6 @@ namespace Presentation.Views
 				cbFinMinutes.Items.Add(i.ToString());
 			}			
 		}
-
 		private async void LoadTask()
 		{
 			if (TempData.TaskItemId > 0)
@@ -97,7 +130,6 @@ namespace Presentation.Views
 				this.Close();
 			}
 		}
-
 		private async Task loadTimes()
 		{
 			if(viewTaskItem.TimeItems != null)
@@ -127,7 +159,6 @@ namespace Presentation.Views
 				listViewTimeItems.ItemsSource = listTimes;
 			}
         }
-
 		private async Task CleanInput()
 		{
 			cbFinHour.SelectedIndex = -1;
@@ -136,12 +167,10 @@ namespace Presentation.Views
 			cbInMinutes.SelectedIndex = -1;
 			txtNotes.Text = string.Empty;
 		}
-
 		private async void Limpiar_Click(object sender, RoutedEventArgs e)
 		{
 			await CleanInput();
 		}
-
 		private async void AddTime_Click(object sender, RoutedEventArgs e)
 		{
 			var initialHour = int.Parse( cbInHour.Text);

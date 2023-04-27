@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
         Title="Información de Tarea" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Delete" Executed="DeleteTimeItem" CanExecute="CanExecuteDeleteTask" />
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -119,14 +122,7 @@
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Name="BtnViewTask"  Width="60" HorizontalContentAlignment="Center" Background="Red" Foreground="White" >Eliminar</Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Name="BtnEditTime"  Width="60" HorizontalContentAlignment="Center" Background="Green" Foreground="White" >Editar</Button>
+                                        <Button Name="BtnViewTask"  Width="60" HorizontalContentAlignment="Center" Background="Red" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TimeItemId}" >Eliminar</Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

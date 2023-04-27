@@ -22,7 +22,7 @@
         <GroupBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Header="Información de Usuario" Foreground="White">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1.5*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -41,16 +41,18 @@
                         <RowDefinition Height="0.8*" />
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" Content="Id" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Label Grid.Column="0" Grid.Row="1" Content="Nombre" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Label Grid.Column="0" Grid.Row="2" Content="Apellidos" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Name="txtIdUser" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
+                    <TextBox Name="txtIdUser" IsEnabled="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                     <TextBox Name="txtName" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                     <TextBox Name="txtLastName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                     <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="3"  Content="Editar" Click="EditUser_Click" />
-                    <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="4"  Content="Desactivar Usuario" Click="DisableUser_Click" />
-                    <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="5"  Content="Cambiar Rol" Click="ChangeAdminRol_Click" />
+                    <Button x:Name="btnLoginState" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="4"  Content="Desactivar Usuario" Click="DisableUser_Click" />
+                    <Button x:Name="btnAdminState" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="5"  Content="Cambiar Rol" Click="ChangeAdminRol_Click" />
+                    <Button x:Name="btnChangePass" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"  Grid.Row="6"  Content="Cambiar Contraseña" Click="ChangePassword_Click" />
                 </Grid>
             </Grid>
         </GroupBox>

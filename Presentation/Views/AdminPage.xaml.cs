@@ -56,6 +56,30 @@ namespace Presentation.Views
 				MessageBox.Show(ex.Message);
 			}
 		}
+		private async void SearchUser_Click(object sender, RoutedEventArgs f)
+		{
+			var isvalid = int.TryParse(txtIdUserToSearch.Text, out var id);
+			if (isvalid){
+				List<User> list  = await B_User.SearchUsersAsync(id);
+				if( list.Count>0)
+				{
+					listViewUsers.ItemsSource = list;
+				}
+				else
+				{
+					MessageBox.Show("No hay coincidencias");
+					txtIdUserToSearch.Text = string.Empty;
+				}
+			}
+			else{
+				MessageBox.Show("Error...");
+			}
+		}
+
+		private async void LoadUsers_Click(object sender, RoutedEventArgs f)
+		{
+			LoadUsersAsync();
+		}
 		private async void AddUser_Click(object sender, RoutedEventArgs f)
 		{
 			try
