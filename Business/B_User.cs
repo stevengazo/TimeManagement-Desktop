@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Media;
+using System.Runtime.Intrinsics.X86;
+using System.Windows;
 
 namespace Business
 {
@@ -136,6 +139,78 @@ namespace Business
 			{
 				Console.WriteLine($"Error GetUser: {ex.Message}");
 				return false;
+			}
+		}
+		public static async Task<List<TaskItem>> SearchTask(int CategoryIdToSearch= 0, int PriorityIdToSearch = 0, DateTime? TimeDayToSearch = null)
+		{
+			try
+			{
+				using TimeDatabaseContext db = new();
+				List<TaskItem> SearchResults = new List<TaskItem>();
+				if (CategoryIdToSearch != 0 && PriorityIdToSearch != 0 && TimeDayToSearch != null)
+				{
+					SearchResults = await (from T in db.TaskItems
+										   join Tim in db.TimeItems
+										   on 
+												T.TaskItemId equals Tim.TaskItemId
+										   where 
+												T.CategoryItemId == CategoryIdToSearch &&
+												T.PriorityItemId == PriorityIdToSearch &&
+												Tim.StartTime.Date == TimeDayToSearch											   
+										   select T).ToListAsync();
+				}
+				else if (CategoryIdToSearch != 0 && PriorityIdToSearch != 0 && TimeDayToSearch == null)
+				{
+					SearchResults = await (from T in db.TaskItems 
+										   where T.CategoryItemId == CategoryIdToSearch && T.PriorityItemId == PriorityIdToSearch
+										   select T).ToListAsync();
+				}
+				else if (CategoryIdToSearch != 0 && PriorityIdToSearch == 0 && TimeDayToSearch == null)
+				{
+					SearchResults = await (from T in db.TaskItems
+										   where T.CategoryItemId == CategoryIdToSearch
+										   select T).ToListAsync();
+				}
+				else if (CategoryIdToSearch == 0 && PriorityIdToSearch != 0 && TimeDayToSearch == null)
+				{
+					SearchResults = await (from T in db.TaskItems
+										   where T.PriorityItemId == PriorityIdToSearch
+										   select T).ToListAsync();
+				}
+				else if (CategoryIdToSearch == 0 && PriorityIdToSearch != 0 && TimeDayToSearch != null)
+				{
+					SearchResults = await (from T in db.TaskItems
+										   join Tim in db.TimeItems
+										   on
+												T.TaskItemId equals Tim.TaskItemId
+										   where
+												T.CategoryItemId == CategoryIdToSearch &&
+												Tim.StartTime.Date == TimeDayToSearch
+										   select T).ToListAsync();
+				}
+				else if (CategoryIdToSearch == 0 && PriorityIdToSearch == 0 && TimeDayToSearch != null)
+				{
+					SearchResults = await (from T in db.TaskItems
+										   join Tim in db.TimeItems
+										   on
+												T.TaskItemId equals Tim.TaskItemId
+										   where												
+												Tim.StartTime.Date == TimeDayToSearch
+										   select T).ToListAsync();
+				}
+				else if (CategoryIdToSearch != 0 && PriorityIdToSearch != 0 && TimeDayToSearch == null)
+				{
+					SearchResults = await (from T in db.TaskItems
+										   where
+												T.CategoryItemId == CategoryIdToSearch &&
+												T.PriorityItemId == PriorityIdToSearch												
+										   select T).ToListAsync();
+				}
+				return SearchResults;
+			}
+			catch(Exception ex) {
+				MessageBox.Show(ex.Message);
+				return null;
 			}
 		}
 		public static async Task SetStatusAsync(int id,bool Status)

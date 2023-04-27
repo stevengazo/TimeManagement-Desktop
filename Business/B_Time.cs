@@ -13,6 +13,26 @@ namespace Business
 {
 	public static class B_Time
 	{
+		public static async Task<List<TimeItem>> ListTimeItemsAsync(DateTime dateTimeToSearch, int taskId)
+		{
+			try
+			{
+				using (TimeDatabaseContext db = new())
+				{
+					var queryResults = await (from T in db.TaskItems
+											  join Tim in db.TimeItems
+											  on T.TaskItemId equals Tim.TaskItemId
+											  where Tim.StartTime.Date == dateTimeToSearch && T.TaskItemId == taskId
+											  select Tim).ToListAsync();
+					return queryResults;
+				}
+			}
+			catch (Exception f)
+			{
+				return null;
+			}
+		}
+
 		public static async Task<bool> AddTime(TimeItem timeItem)
 		{
 

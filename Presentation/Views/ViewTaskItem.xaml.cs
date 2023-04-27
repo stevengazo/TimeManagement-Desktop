@@ -32,13 +32,37 @@ namespace Presentation.Views
 			LoadTask();
 			LoadCombobox();
 		}
+
+
+
 		private async void SearchDate_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+			try
+			{
+			 var Date = dtpSearchDate.SelectedDate;
+				if(Date!= null)
+				{
+					DateTime tmp = Date.Value;
+					List<TimeItem> TimeItemsList = new();
+					TimeItemsList = await B_Time.ListTimeItemsAsync(tmp, viewTaskItem.TaskItemId);
+					if(TimeItemsList.Count > 0)
+					{					
+						listViewTimeItems.ItemsSource = TimeItemsList;
+					}
+					else
+					{
+						MessageBox.Show("No hay coindencias");
+					}
+				}
+			}catch(Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
 		}
 		private async void CleanSearch_Click(object sender, RoutedEventArgs e)
 		{
-			dtpSearchDate.SelectedDate = DateTime.Today;
+			//dtpSearchDate.SelectedDate = DateTime.Today;
+			dtpSearchDate.SelectedDate = null;
 			LoadTask();
 		}
 
