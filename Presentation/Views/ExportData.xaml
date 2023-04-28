@@ -14,30 +14,36 @@
         <GroupBox Grid.Row="0" Background="AliceBlue" Header="Filtros de Busqueda">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*" />
+                    
                     <ColumnDefinition Width="0.7*" />
-                    <ColumnDefinition Width="0.4*" />
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="0.5*" />
                     <ColumnDefinition Width="0.5*" />
                     <ColumnDefinition Width="0.5*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Categoría" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox Name="cbCategory" Grid.Column="1" Margin="5" />
-                <Label Grid.Column="2" Content="Usuario"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox Name="cbUsers" Grid.Column="3" Margin="5" />
-                <Label Grid.Column="4" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox Name="cbMonth" Grid.Column="5" Margin="5" />
-                <Button Grid.Column="6" Margin="5" Content="Buscar" />
-                <Button Grid.Column="7" Margin="5" Content="Exportar" />
+                <Label Grid.Column="0" Content="Usuario"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Name="cbUsers" Grid.Column="1" Margin="5" />
+                <Label Grid.Column="2" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ComboBox Name="cbMonth" Grid.Column="3" Margin="5" />
+                <Button Grid.Column="4" Margin="5" Content="Buscar" />
+                <Button Grid.Column="5" Margin="5" Content="Exportar" />
+                <Button Grid.Column="6" Margin="5" Content="Limpiar" />
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Header="Consultas">
-            <ListView x:Name="listView" Margin="6" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView x:Name="listView" Margin="6" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn/>
+                        <GridViewColumn Header="N" Width="20" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="Categoria" Width="111" DisplayMemberBinding="{Binding Category}"/>
+                        <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding Priority}"/>
+                        <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding Status}"/>
+                        <GridViewColumn Header="Usuario" Width="111" DisplayMemberBinding="{Binding User}"/>
+                        <GridViewColumn Header="Horas invertidas" Width="111" DisplayMemberBinding="{Binding QuantityOfHours}"/>
+                        <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding Created, StringFormat='{}{0:dd-MM-yyyy }'}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

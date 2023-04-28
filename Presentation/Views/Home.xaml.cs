@@ -154,18 +154,18 @@ namespace Presentation
 			{
 				PerformanceTaskPage performanceTaskPage = new();
 				performanceTaskPage.ShowDialog();
-			}
+			}else
 			{
 				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
 		}
-		private void OnExportPage(object sender, RoutedEventArgs e)
+		private async void OnExportPage(object sender, RoutedEventArgs e)
 		{
 			if (TempData.CurrentUser.IsAdmin)
 			{
 				ExportData exportDataWindow = new();
 				exportDataWindow.ShowDialog();
-			}
+			}else
 			{
 				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
