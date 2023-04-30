@@ -27,8 +27,8 @@
                 <ComboBox Name="cbUsers" Grid.Column="1" Margin="5" />
                 <Label Grid.Column="2" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <ComboBox Name="cbMonth" Grid.Column="3" Margin="5" />
-                <Button Grid.Column="4" Margin="5" Content="Buscar" />
-                <Button Grid.Column="5" Margin="5" Content="Exportar" />
+                <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" />
+                <Button Grid.Column="5" Margin="5" Content="Exportar" Click="Button_Click" />
                 <Button Grid.Column="6" Margin="5" Content="Limpiar" />
             </Grid>
         </GroupBox>

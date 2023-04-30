@@ -66,5 +66,34 @@ namespace Presentation.Views
 			}
             
 		}
-	}
+		private async void Search_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if( string.IsNullOrEmpty( cbUsers.Text) && string.IsNullOrEmpty(cbMonth.Text))
+				{
+					MessageBox.Show("No se puede procesar la busqueda, seleccione los dos elementos", "Información", MessageBoxButton.OK);
+				}
+				else
+				{
+					int user = (from U in usersDic where U.Value == cbUsers.Text select U.Key).FirstOrDefault();
+					int monthId = (from M in months where M.Value == cbMonth.Text select M.Key).FirstOrDefault();
+					var Results = await B_Export.GenerateReportAsync(user, monthId);
+					if (Results.Count > 0)
+					{
+						listView.ItemsSource = Results;
+					}
+				}
+				
+			}catch(Exception de)
+			{
+				MessageBox.Show(de.Message);
+			}
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+
+        }
+    }
 }

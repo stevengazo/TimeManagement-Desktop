@@ -18,9 +18,8 @@ namespace Models
 			{
 			
 				using TimeDatabaseContext db = new TimeDatabaseContext();
-				return null;
 				List<TaskItemReport> result = null;
-				if(Userid != 0 && Month!= 0)
+				if(Userid > -1 && Month >-1)
 				{
 					var requltQuery = await (	from Tas in db.TaskItems 									   
 												join U in db.Users
@@ -38,40 +37,10 @@ namespace Models
 					var taskToReport = await GenerateStructure(requltQuery);
 					return taskToReport;
 				}
-				else if (Userid != 0 && Month == 0)
+				else
 				{
-					var requltQuery = await (from Tas in db.TaskItems
-											 join U in db.Users
-											 on Tas.UserId equals U.UserId
-											 where (Tas.CreationDate.Year == DateTime.Today.Year)
-											 && (U.UserId == Userid)
-											 select Tas)
-							.Include(I => I.User)
-							.Include(i => i.TimeItems)
-							.Include(I => I.CategoryItem)
-							.Include(I => I.StatusItem)
-							.Include(I => I.PriorityItem).ToListAsync();
-					var taskToReport = await GenerateStructure(requltQuery);
-					return taskToReport;
-
-				}
-				else if (Userid == 0 && Month != 0)
-				{
-					var requltQuery = await (from Tas in db.TaskItems
-											 join U in db.Users
-											 on Tas.UserId equals U.UserId
-
-											 where (Tas.CreationDate.Year == DateTime.Today.Year)
-											 && (Tas.CreationDate.Month == Month)
-											 select Tas)
-							.Include(I => I.User)
-							.Include(i => i.TimeItems)
-							.Include(I => I.CategoryItem)
-							.Include(I => I.StatusItem)
-							.Include(I => I.PriorityItem).ToListAsync();
-					var taskToReport = await GenerateStructure(requltQuery);
-					return taskToReport;
-				}
+					return null;
+				}				
 			}
 			catch (Exception ex)
 			{
@@ -95,7 +64,7 @@ namespace Models
 					Priority = item.PriorityItem.Name,
 					User = item.User.Name					
 				};
-				report.timeItems.AddRange(item.TimeItems);
+				report.timeItems=item.TimeItems.ToList();
 				var num = 0;
 				foreach (var itemi in item.TimeItems)
 				{
