@@ -65,13 +65,13 @@ namespace Models
 					User = item.User.Name					
 				};
 				report.timeItems=item.TimeItems.ToList();
-				var num = 0;
+				TimeSpan num = new();
 				foreach (var itemi in item.TimeItems)
 				{
-					var ts = (itemi.StartTime - itemi.EndTime);
-					num =  ts.Hours + num;
+					var ts = (itemi.EndTime - itemi.StartTime);
+					num =  ts + num;
 				}
-				report.QuantityOfHours = num;			
+				report.QuantityOfHours = num.Hours;			
 				list.Add(report);	
 			}
 			return list;

@@ -83,8 +83,6 @@ namespace Presentation.Views
 					var ExcelApp = new Excel.Application();
 					ExcelApp.Workbooks.Add();
 					Excel._Worksheet _Worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
-
-
 				}
 			}
 			catch(Exception f)
