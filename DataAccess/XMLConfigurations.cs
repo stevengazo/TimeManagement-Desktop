@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 
 namespace DataAccess
@@ -29,6 +30,7 @@ namespace DataAccess
 			}
 			catch (Exception f)
 			{
+				MessageBox.Show("Error en conexión a Db...\nRevise la cadena de conexión","Error interno",MessageBoxButton.OK);
 				return null;
 			}
 		}

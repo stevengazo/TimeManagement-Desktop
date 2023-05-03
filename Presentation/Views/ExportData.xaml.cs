@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Business;
 using Models;
+using Microsoft.Win32;
+using System.Globalization;
 
 namespace Presentation.Views
 {
@@ -66,6 +69,84 @@ namespace Presentation.Views
 			}
             
 		}
+
+		private async Task ExportData_click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				SaveFileDialog saveFileDialog = new();
+				saveFileDialog.Title = "Exportar Tareas";
+				saveFileDialog.Filter = "Excel|*.xlsx";
+				if(saveFileDialog.ShowDialog()== true)
+				{
+					string urlFile = saveFileDialog.FileName;
+					var ExcelApp = new Excel.Application();
+					ExcelApp.Workbooks.Add();
+					Excel._Worksheet _Worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
+
+
+				}
+			}
+			catch(Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
+
+
+	/*	private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+			//	saveFileDialog1.Title = "Exportar a Excel";
+			//	saveFileDialog1.Filter = "Excel|*.xlsx";
+			//	if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+				{
+					string URLArchivo = saveFileDialog1.FileName;
+					var ExcelApp = new Excel.Application();
+					ExcelApp.Workbooks.Add();
+					Excel._Worksheet worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
+					worksheet.Cells[1, "A"] = "Numero Proyecto";
+					worksheet.Cells[1, "B"] = "Vendedor";
+					worksheet.Cells[1, "C"] = "Cliente";
+					worksheet.Cells[1, "D"] = "Factura Anticipo";
+					worksheet.Cells[1, "E"] = "Factura Final";
+					worksheet.Cells[1, "F"] = "Porcentaje Anticipo";
+					worksheet.Cells[1, "G"] = "Tarea Bitrix";
+					worksheet.Cells[1, "H"] = "Fecha OC";
+					worksheet.Cells[1, "I"] = "Oferta";
+					worksheet.Cells[1, "J"] = "Fecha Inicio";
+					worksheet.Cells[1, "K"] = "Fecha Final";
+					worksheet.Cells[1, "L"] = "Monto";
+					int contador = 2;
+					foreach (Proyecto item in proyectos)
+					{
+						worksheet.Cells[contador, 1] = item.ProyectoId.ToString();
+						worksheet.Cells[contador, 2] = item.Vendedor.Nombre;
+						worksheet.Cells[contador, 3] = item.Cliente;
+						worksheet.Cells[contador, 4] = item.FacturaAnticipoId;
+						worksheet.Cells[contador, 5] = item.FacturaFinalId;
+						worksheet.Cells[contador, 6] = item.PorcentajeAnticipo;
+						worksheet.Cells[contador, 7] = item.TareaId;
+						worksheet.Cells[contador, 8] = item.FechaOC.ToLongDateString();
+						worksheet.Cells[contador, 9] = item.OfertaId.ToString();
+						worksheet.Cells[contador, 10] = item.FechaInicio.ToLongDateString();
+						worksheet.Cells[contador, 11] = item.FechaFinal.ToLongDateString();
+						worksheet.Cells[contador, 12] = item.Monto.ToString("C", CultureInfo.CurrentCulture);
+						contador++;
+					}
+					ExcelApp.ActiveWorkbook.SaveAs(URLArchivo, Excel.XlFileFormat.xlWorkbookDefault);
+					ExcelApp.ActiveWorkbook.Close();
+					ExcelApp.Quit();
+					MessageBox.Show("Documento Generado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Ocurrió un problema. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}*/
+
 		private async void Search_Click(object sender, RoutedEventArgs e)
 		{
 			try
