@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Exportar Datos" Height="450" Width="800">
+        Title="Exportar Datos" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -28,7 +28,7 @@
                 <Label Grid.Column="2" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <ComboBox Name="cbMonth" Grid.Column="3" Margin="5" />
                 <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" />
-                <Button Grid.Column="5" Margin="5" Content="Exportar" Click="Button_Click" />
+                <Button Grid.Column="5" Margin="5" Content="Exportar" Click="ExportData_click" />
                 <Button Grid.Column="6" Margin="5" Content="Limpiar" />
             </Grid>
         </GroupBox>

@@ -26,7 +26,6 @@
             <MenuItem Header="_Administración">
                 <MenuItem Header="Usuarios" Click="OnAdminPage" />
                 <Separator/>
-                <MenuItem Header="Gráficos" Click="OnResumePage" />
                 <MenuItem Header="Rendimiento" Click="OnPerfomancePage" />
                 <MenuItem Header="Exportado" Click="OnExportPage" />
             </MenuItem>

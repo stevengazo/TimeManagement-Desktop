@@ -134,16 +134,15 @@ namespace Presentation.Views
 		{
 			if(viewTaskItem.TimeItems != null)
 			{
-				_Minutes = 0;
+				TimeSpan totalTime = new();
 				List<TimeItemWithQuantity> listTimes = new() ;
+				var daysQuantity = listTimes.GroupBy(D => D.StartTime.Date).Count()+1;
 				foreach (var item in viewTaskItem.TimeItems)
 				{
 
 					TimeSpan TimeWorked = (item.EndTime - item.StartTime);
 					var Hours = TimeWorked.Hours;
-					var totalMinutes = Convert.ToInt16(TimeWorked.TotalMinutes);
-					var Minutes = TimeWorked.Minutes - (TimeWorked.Minutes *60);
-
+					var Minutes =  TimeWorked.Minutes;
 
 					TimeItemWithQuantity i = new() {
 						TimeItemId = item.TimeItemId,
@@ -152,10 +151,12 @@ namespace Presentation.Views
 						StartTime = item.StartTime,
 						EndTime = item.EndTime						
 					};
-					_Minutes = _Minutes + (i.Hours * 60);
+					totalTime = totalTime + TimeWorked;
 					listTimes.Add(i);
 				}
-				lblHoras.Content = $"{_Minutes / 60} Horas";
+
+				lblHoras.Content = $"{totalTime.Hours}:{totalTime.Minutes} Usadas";
+				lblDias.Content = $"{daysQuantity} Días laborados";
 				listViewTimeItems.ItemsSource = listTimes;
 			}
         }

@@ -70,7 +70,7 @@ namespace Presentation.Views
             
 		}
 
-		private async Task ExportData_click(object sender, RoutedEventArgs e)
+		public async void ExportData_click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
@@ -107,17 +107,7 @@ namespace Presentation.Views
 					ExcelApp.Workbooks.Add();
 					Excel._Worksheet worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
 					worksheet.Cells[1, "A"] = "Numero Proyecto";
-					worksheet.Cells[1, "B"] = "Vendedor";
-					worksheet.Cells[1, "C"] = "Cliente";
-					worksheet.Cells[1, "D"] = "Factura Anticipo";
-					worksheet.Cells[1, "E"] = "Factura Final";
-					worksheet.Cells[1, "F"] = "Porcentaje Anticipo";
-					worksheet.Cells[1, "G"] = "Tarea Bitrix";
-					worksheet.Cells[1, "H"] = "Fecha OC";
-					worksheet.Cells[1, "I"] = "Oferta";
-					worksheet.Cells[1, "J"] = "Fecha Inicio";
-					worksheet.Cells[1, "K"] = "Fecha Final";
-					worksheet.Cells[1, "L"] = "Monto";
+					
 					int contador = 2;
 					foreach (Proyecto item in proyectos)
 					{
@@ -172,9 +162,6 @@ namespace Presentation.Views
 			}
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-
-        }
-    }
+	
+	}
 }
