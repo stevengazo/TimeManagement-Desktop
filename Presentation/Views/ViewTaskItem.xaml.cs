@@ -136,7 +136,9 @@ namespace Presentation.Views
 			{
 				TimeSpan totalTime = new();
 				List<TimeItemWithQuantity> listTimes = new() ;
-				var daysQuantity = listTimes.GroupBy(D => D.StartTime.Date).Count()+1;
+				int daysQuantity = 0;
+				daysQuantity = viewTaskItem.TimeItems.DistinctBy(D=>D.StartTime.Date).Count();
+					
 				foreach (var item in viewTaskItem.TimeItems)
 				{
 

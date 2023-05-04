@@ -27,7 +27,8 @@
                 <MenuItem Header="Usuarios" Click="OnAdminPage" />
                 <Separator/>
                 <MenuItem Header="Rendimiento" Click="OnPerfomancePage" />
-                <MenuItem Header="Exportado" Click="OnExportPage" />
+                <MenuItem Header="Exportado por Mes" Click="OnExportPage" />
+                <MenuItem Header="Exportado por Dia" />
             </MenuItem>
             <MenuItem Header="_Tareas">
                 <MenuItem Header="Tareas archivadas" Click="DisableTasksPage"/>
