@@ -50,6 +50,20 @@ namespace Presentation.Views
 			InitializeComponent();
 			LoadData();
 		}
+
+		private async void CanExecuteViewTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void ViewTaskItem(object target, ExecutedRoutedEventArgs e)
+		{
+			var numberOfTask = int.Parse(e.Parameter.ToString());
+			TempData.TaskItemId = numberOfTask;
+			ViewTaskItem viewTaskItemWindow = new();
+			viewTaskItemWindow.ShowDialog();
+		}
+
+
 		private async Task LoadData()
 		{
 			try
@@ -88,15 +102,14 @@ namespace Presentation.Views
 						string urlFile = saveFileDialog.FileName;
 						var ExcelApp = new Excel.Application();
 						var listOfUsers = (from U in reports select U.User).Distinct().ToList();
+						ExcelApp.Workbooks.Add();
 						foreach (var UserName in listOfUsers)
 						{
-							ExcelApp.Workbooks.Add();
-							Excel._Worksheet _Worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
+							//Excel._Worksheet _Worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
+							Excel._Worksheet _Worksheet = (Excel.Worksheet) ExcelApp.Worksheets.Add();
 							_Worksheet.Cells[1, "A"] = "Numero Proyecto";
 							_Worksheet.Name = $"{UserName}";
 							var resportPeerUser = reports.Where(R => R.User.Equals(UserName)).ToList();
-							
-
 							#region Titulos
 							_Worksheet.Cells[1, "A"] = nameof(TaskItemReport.User);
 							_Worksheet.Cells[1, "b"] = nameof(TaskItemReport.Title);
@@ -159,51 +172,7 @@ namespace Presentation.Views
 				MessageBox.Show(f.Message);
 			}
 		}
-
-
-		/*	private void excelToolStripMenuItem_Click(object sender, EventArgs e)
-			{
-				try
-				{
-				//	saveFileDialog1.Title = "Exportar a Excel";
-				//	saveFileDialog1.Filter = "Excel|*.xlsx";
-				//	if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-					{
-						string URLArchivo = saveFileDialog1.FileName;
-						var ExcelApp = new Excel.Application();
-						ExcelApp.Workbooks.Add();
-						Excel._Worksheet worksheet = (Excel.Worksheet)ExcelApp.ActiveSheet;
-						worksheet.Cells[1, "A"] = "Numero Proyecto";
-
-						int contador = 2;
-						foreach (Proyecto UserName in proyectos)
-						{
-							worksheet.Cells[contador, 1] = UserName.ProyectoId.ToString();
-							worksheet.Cells[contador, 2] = UserName.Vendedor.Nombre;
-							worksheet.Cells[contador, 3] = UserName.Cliente;
-							worksheet.Cells[contador, 4] = UserName.FacturaAnticipoId;
-							worksheet.Cells[contador, 5] = UserName.FacturaFinalId;
-							worksheet.Cells[contador, 6] = UserName.PorcentajeAnticipo;
-							worksheet.Cells[contador, 7] = UserName.TareaId;
-							worksheet.Cells[contador, 8] = UserName.FechaOC.ToLongDateString();
-							worksheet.Cells[contador, 9] = UserName.OfertaId.ToString();
-							worksheet.Cells[contador, 10] = UserName.FechaInicio.ToLongDateString();
-							worksheet.Cells[contador, 11] = UserName.FechaFinal.ToLongDateString();
-							worksheet.Cells[contador, 12] = UserName.Monto.ToString("C", CultureInfo.CurrentCulture);
-							contador++;
-						}
-						ExcelApp.ActiveWorkbook.SaveAs(URLArchivo, Excel.XlFileFormat.xlWorkbookDefault);
-						ExcelApp.ActiveWorkbook.Close();
-						ExcelApp.Quit();
-						MessageBox.Show("Documento Generado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					}
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Ocurrió un problema. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}*/
-
+		
 		private async void Search_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -214,12 +183,24 @@ namespace Presentation.Views
 				}
 				else
 				{
-					int user = (from U in usersDic where U.Value == cbUsers.Text select U.Key).FirstOrDefault();
+					int user = 0;
+					if (cbUsers.Text == "Todos")
+					{
+						user = -1;
+					}
+					else{
+						user = (from U in usersDic where U.Value == cbUsers.Text select U.Key).FirstOrDefault();
+					}	 
 					int monthId = (from M in months where M.Value == cbMonth.Text select M.Key).FirstOrDefault();
 					reports = await B_Export.GenerateReportAsync(user, monthId);
 					if (reports.Count > 0)
 					{
 						listView.ItemsSource = reports;
+					}
+					else
+					{
+						MessageBox.Show("No hay coincidencias");
+						clean();
 					}
 				}
 
@@ -230,6 +211,16 @@ namespace Presentation.Views
 			}
 		}
 
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			clean();
+		}
 
+		private void clean()
+		{
+			listView.ItemsSource = null;
+			cbMonth.SelectedIndex = -1;
+			cbUsers.SelectedIndex = -1;
+		}
 	}
 }

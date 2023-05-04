@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
         Title="Exportar Datos" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -29,7 +32,7 @@
                 <ComboBox Name="cbMonth" Grid.Column="3" Margin="5" />
                 <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" />
                 <Button Grid.Column="5" Margin="5" Content="Exportar" Click="ExportData_click" />
-                <Button Grid.Column="6" Margin="5" Content="Limpiar" />
+                <Button Grid.Column="6" Margin="5" Content="Limpiar" Click="Button_Click" />
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Header="Consultas">
@@ -44,6 +47,13 @@
                         <GridViewColumn Header="Usuario" Width="111" DisplayMemberBinding="{Binding User}"/>
                         <GridViewColumn Header="Horas invertidas" Width="111" DisplayMemberBinding="{Binding QuantityOfHours}"/>
                         <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding Created, StringFormat='{}{0:dd-MM-yyyy }'}"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding Id}"  HorizontalContentAlignment="Center"  >Ver</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

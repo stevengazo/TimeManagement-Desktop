@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
@@ -55,20 +56,30 @@ namespace Presentation
 		}
 		private async Task SaveCredentialsAsync(string user, string pass)
 		{
-			string urlArchivo = Path.Combine(Directory.GetCurrentDirectory(), "temporals.xml");
-			if (File.Exists(urlArchivo))
+			try
 			{
-				File.Delete(urlArchivo);
-			}
+				string urlArchivo = Path.Combine(Directory.GetCurrentDirectory(), "temporals.xml");
+
+				if (File.Exists(urlArchivo))
+				{
+					File.Delete(urlArchivo);
+				}
 				XDocument document = new XDocument(
 													new XDeclaration("1.0", "utf-8", "yes"),
 													new XComment("XML from plain code"),
 
 													new XElement("root",
-														new XElement(nameof(User.UserId),user),
+														new XElement(nameof(User.UserId), user),
 														new XElement(nameof(User.Password), pass)
 														));
-				document.Save(urlArchivo);			
+			
+				document.Save(urlArchivo);
+			}
+			catch(Exception f)
+			{
+				MessageBox.Show(f.Message,"Error SaveCredentias");
+			}
+			
 		}
 		private async Task LoadCredentialsAsync()
 		{

@@ -30,7 +30,8 @@ namespace Presentation
 
 		public Home()
 		{
-			InitializeComponent();			
+			InitializeComponent();
+			Title = $"Inicio - {TempData.CurrentUser.Name} {TempData.CurrentUser.LastName} ";
 			LoadTasks();
 			loadCategories();
 			LoadPriorities();
@@ -169,6 +170,11 @@ namespace Presentation
 			{
 				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
+		}
+		private void ExporDataByDay(object sender, RoutedEventArgs e)
+		{
+			ExportDataByDay exportDataByDay = new();
+			exportDataByDay.ShowDialog();
 		}
 		private void OnAdminPage(object sender, RoutedEventArgs e)
 		{

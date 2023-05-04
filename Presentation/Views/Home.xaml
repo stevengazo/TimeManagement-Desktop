@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Inicio" Height="450" Width="700" WindowStartupLocation="CenterScreen" >
+        Title="Inicio" Height="450" Width="750" WindowStartupLocation="CenterScreen" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
         <CommandBinding Command="ApplicationCommands.Delete" Executed="DisableTaskItem" CanExecute=" CanExecuteDeleteTask" />
@@ -14,10 +14,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" >
+        <Menu Grid.Row="0"  >
             <MenuItem Header="_Archivo">
                 <MenuItem Header="Cambiar Contraseña" Click="ChangePassword_Click" />
                 <Separator/>
@@ -27,8 +27,8 @@
                 <MenuItem Header="Usuarios" Click="OnAdminPage" />
                 <Separator/>
                 <MenuItem Header="Rendimiento" Click="OnPerfomancePage" />
-                <MenuItem Header="Exportado por Mes" Click="OnExportPage" />
-                <MenuItem Header="Exportado por Dia" />
+                <MenuItem Header="Exportado por Tarea" Click="OnExportPage" />
+                <MenuItem Header="Exportado por Dia" Click="ExporDataByDay" />
             </MenuItem>
             <MenuItem Header="_Tareas">
                 <MenuItem Header="Tareas archivadas" Click="DisableTasksPage"/>
@@ -45,18 +45,18 @@
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="1*" />
-                    <RowDefinition  Height="1*" />
+                    <RowDefinition  Height="28" />
+                    <RowDefinition  Height="28" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="4.5*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="4.5*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="4.5*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="70" />
                 </Grid.ColumnDefinitions>
                 <Label  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Titulo</Label>
                 <TextBox Grid.Row="0" Grid.Column="1" Width="100" x:Name="txtTitle" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>

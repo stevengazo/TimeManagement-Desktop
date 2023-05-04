@@ -128,22 +128,13 @@ namespace Presentation.Views
 		}
 		private async void Seach_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
-			try
-			{
-				/// Validate Data
-
-				// Search
-
-				// LoadResults
-			} catch (Exception f)
-			{
-				MessageBox.Show(f.Message);
-			}
+			MessageBox.Show("Opcion no disponible");
+	
 		}
 		private async void Export_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+			MessageBox.Show("Opcion no disponible");
+			
 		}
 		private async void ChangeAdminRol_Click(object sender, RoutedEventArgs e)
 		{

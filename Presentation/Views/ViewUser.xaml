@@ -9,7 +9,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
     </Window.CommandBindings>        
-    <Grid Background="DarkBlue">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="1*" />
@@ -19,7 +19,7 @@
             <ColumnDefinition Width="0.7*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Header="Información de Usuario" Foreground="White">
+        <GroupBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Header="Información de Usuario" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
@@ -43,9 +43,9 @@
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Content="Id" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Grid.Column="0" Grid.Row="1" Content="Nombre" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Label Grid.Column="0" Grid.Row="2" Content="Apellidos" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Id"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Nombre" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="Apellidos"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox Name="txtIdUser" IsEnabled="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                     <TextBox Name="txtName" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                     <TextBox Name="txtLastName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
@@ -56,7 +56,7 @@
                 </Grid>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Header="Información de Usuario" Foreground="White">
+        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Header="Información de Usuario" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.5*"/>
@@ -74,11 +74,11 @@
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Categoria" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Grid.Column="0" Content="Categoria" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <ComboBox Name="cbCategory" Grid.Column="1" Margin="5" />
-                        <Label Grid.Column="2" Content="Prioridad" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Grid.Column="2" Content="Prioridad" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <ComboBox Name="cbPriority" Grid.Column="3" Margin="5" />
-                        <Label  Grid.Column="4" Content="Tiempos" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                        <Label  Grid.Column="4" Content="Tiempos"  HorizontalAlignment="Center" VerticalAlignment="Center"  />
                         <DatePicker Name="dtpSearchDate" Grid.Column="5" Margin="5" />
                         <Button Grid.Column="6" Content="Buscar" Margin="5" Click="Seach_Click" />
                         <Button Grid.Column="7" Content="Exportar" Margin="5" Click="Export_Click" />
