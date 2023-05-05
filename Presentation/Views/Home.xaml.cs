@@ -48,7 +48,7 @@ namespace Presentation
 			var numberOfTask = int.Parse(e.Parameter.ToString());
 			TempData.TaskItemId = numberOfTask;
 			ViewTaskItem viewTaskItemWindow = new();
-			viewTaskItemWindow.ShowDialog();
+			viewTaskItemWindow.Show();
 		}
 		private async void CanExecuteDeleteTask(object target, CanExecuteRoutedEventArgs e)
 		{
