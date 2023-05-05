@@ -15,6 +15,7 @@ namespace Models
 		public string Priority { get; set; }
 		public string Type { get; set; }
 		public string UserName { get; set; }
+		public string  UserId { get; set; }
 		public int Hours { get; set; }
 		public int Minutes { get; set; }
 		public DateTime StartTime { get; set; }

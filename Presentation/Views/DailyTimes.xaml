@@ -1,11 +1,11 @@
-﻿<Window x:Class="Presentation.Views.ExportDataByDay"
+﻿<Window x:Class="Presentation.Views.DailyTimes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Exportado de Datos por Día" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tiempos Diarios Registrados" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
     </Window.CommandBindings>
@@ -13,7 +13,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="120" />
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0"  Header="Busqueda" >
             <Grid>
@@ -28,8 +27,10 @@
                 <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
                 <Button  Grid.Column="2" Content="Buscar" Margin="5" Click="SearchTask_Click"  />
                 <Button  Grid.Column="3" Content="Limpiar" Margin="5" Click="Clean_Click" />
-                <Button  Grid.Column="4" Content="Exportar" Margin="5"  Click="Export_Click"  />
+                <Label  Name="lblTiempo" Grid.Column="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                
             </Grid>
+
         </GroupBox>
         <GroupBox Grid.Row="1"  Header="Lista de Tareas" >
             <ListView x:Name="listViewTask">
@@ -52,20 +53,6 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
-        <GroupBox Grid.Row="2" Header="Empleados">
-            <ListView x:Name="listViewUsersReport">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Id" Width="90" DisplayMemberBinding="{Binding idUser}"/>
-                        <GridViewColumn Header="Nombre" Width="90" DisplayMemberBinding="{Binding name}"/>
-                        <GridViewColumn Header="Apellidos" Width="90" DisplayMemberBinding="{Binding lastname}"/>
-                        <GridViewColumn Header="Dia" Width="80" DisplayMemberBinding="{Binding date, StringFormat='{}{0:dd-MM-yy  }'}"/>
-                        <GridViewColumn Header="Hora" Width="80" DisplayMemberBinding="{Binding hours}"/>
-                        <GridViewColumn Header="Minutos" Width="80" DisplayMemberBinding="{Binding minutes}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

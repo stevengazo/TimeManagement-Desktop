@@ -17,17 +17,16 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Presentation.Views
 {
-    /// <summary>
-    /// Lógica de interacción para ExportDataByDay.xaml
-    /// </summary>
-    public partial class ExportDataByDay : Window
-    {
-		public List<UserTimeReport> UserTimeReportList = new();
+	/// <summary>
+	/// Lógica de interacción para DailyTimes.xaml
+	/// </summary>
+	public partial class DailyTimes : Window
+	{
 		private List<Task_Time_Report> reports = new List<Task_Time_Report>();
-        public ExportDataByDay()
-        {
-            InitializeComponent();
-        }
+		public DailyTimes()
+		{
+			InitializeComponent();
+		}
 
 		private async void CanExecuteViewTask(object target, CanExecuteRoutedEventArgs e)
 		{
@@ -46,16 +45,20 @@ namespace Presentation.Views
 			try
 			{
 				var SelectedDate = dtpDateSelected.SelectedDate;
-				if (SelectedDate != null )
+				if (SelectedDate != null)
 				{
-					reports = await B_Export.ReportByDayWorkedAsync(SelectedDate);
-					UserTimeReportList = await B_Export.ReportTimeByDayAsync(SelectedDate);
-					if (reports.Count > 0 && reports != null && UserTimeReportList.Count>0)
+					reports = await B_Export.ReportByDayWorkedAsync(SelectedDate, TempData.CurrentUser.UserId);
+					if (reports.Count > 0 && reports != null)
 					{
-						reports = reports.OrderBy(R => R.UserName).ToList();
-						listViewTask.ItemsSource = reports;
-						listViewUsersReport.ItemsSource = UserTimeReportList;                        
-                    }
+						reports = reports.OrderBy(R => R.StartTime).ToList();
+						TimeSpan time = new();
+                        foreach (var item in reports)
+                        {
+							time = time + (item.EndTime - item.StartTime);
+                        }
+						lblTiempo.Content = $"{time.Hours}:{time.Minutes} Registradas";
+                        listViewTask.ItemsSource = reports;
+					}
 					else
 					{
 						MessageBox.Show("No hay coincidencias");
@@ -73,7 +76,8 @@ namespace Presentation.Views
 			try
 			{
 				dtpDateSelected.SelectedDate = null;
-				listViewTask.ItemsSource = null ;
+				listViewTask.ItemsSource = null;
+				lblTiempo.Content = string.Empty;
 
 			}
 			catch (Exception ex)
@@ -97,8 +101,8 @@ namespace Presentation.Views
 						ExcelApp.Workbooks.Add();
 
 						var users = (from R in reports select R.UserName).Distinct().ToList();
-                        foreach (var item in users)
-                        {
+						foreach (var item in users)
+						{
 							Excel._Worksheet _Worksheet = (Excel.Worksheet)ExcelApp.Worksheets.Add();
 							_Worksheet.Name = $"Resumen de {item}";
 							int counter = 2;

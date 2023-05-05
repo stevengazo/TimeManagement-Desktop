@@ -165,7 +165,7 @@ namespace Presentation
 			if (TempData.CurrentUser.IsAdmin)
 			{
 				ExportData exportDataWindow = new();
-				exportDataWindow.ShowDialog();
+				exportDataWindow.Show();
 			}else
 			{
 				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -173,8 +173,18 @@ namespace Presentation
 		}
 		private void ExporDataByDay(object sender, RoutedEventArgs e)
 		{
-			ExportDataByDay exportDataByDay = new();
-			exportDataByDay.ShowDialog();
+
+			if (TempData.CurrentUser.IsAdmin)
+			{
+
+				ExportDataByDay exportDataByDay = new();
+				exportDataByDay.Show();
+			}
+			else
+			{
+				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+
 		}
 		private void OnAdminPage(object sender, RoutedEventArgs e)
 		{
@@ -209,6 +219,12 @@ namespace Presentation
 			About aboutWindow = new About();
 			aboutWindow.ShowDialog();
 
+		}
+		private async void DailyTasksPage(object sender, RoutedEventArgs r)
+		{
+			DailyTimes dailyTimes = new();
+			dailyTimes.Show();
+			LoadTasks();
 		}
 		private async void DisableTasksPage(object sender, RoutedEventArgs r)
 		{

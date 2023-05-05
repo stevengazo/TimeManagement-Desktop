@@ -32,6 +32,7 @@
             </MenuItem>
             <MenuItem Header="_Tareas">
                 <MenuItem Header="Tareas archivadas" Click="DisableTasksPage"/>
+                <MenuItem Header="Busqueda de Tiempos por día" Click="DailyTasksPage"/>
             </MenuItem>
             <MenuItem Header="_Ayuda">
                 <MenuItem Header="Acerca de" Click="AboutPage"/>
