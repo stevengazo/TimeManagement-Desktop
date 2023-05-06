@@ -19,7 +19,7 @@ namespace Presentation
 		public Login()
 		{
 			InitializeComponent();
-			LoadCredentialsAsync();
+			Task.Run(LoadCredentialsAsync);
 		}
 		private async void OnLoging(object sender, RoutedEventArgs e)
 		{
@@ -41,7 +41,7 @@ namespace Presentation
 						await SaveCredentialsAsync(idUsuario.ToString(),pass);
 					}
 					this.Hide();
-					viewHome.ShowDialog();										
+					viewHome.Show();										
 					this.Close();
 				}
 				else

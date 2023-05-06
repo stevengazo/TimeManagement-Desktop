@@ -21,7 +21,7 @@
             <MenuItem Header="_Archivo">
                 <MenuItem Header="Cambiar Contraseña" Click="ChangePassword_Click" />
                 <Separator/>
-                <MenuItem Header="Salir" />
+                <MenuItem Header="Salir" Click="Exit_Click" />
             </MenuItem>
             <MenuItem Header="_Administración">
                 <MenuItem Header="Usuarios" Click="OnAdminPage" />
