@@ -16,16 +16,19 @@
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="266*"/>
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" Grid.Column="0" >
+        <Label Grid.Row="0" Foreground="White" FontSize="14" HorizontalAlignment="Center">Datos de Tarea</Label>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center">Historial de Tiempos Registrados</Label>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="110"/>
@@ -41,24 +44,26 @@
             <Label Name="lblPriority" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White"></Label>
             <!-- datos-->
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="0" >
+        <Grid Grid.Row="2" Grid.Column="0" Margin="0,68,0,0" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="37" />
+                <RowDefinition Height="48" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="10" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Foreground="White">Inicio</Label>
-            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" >
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="White" FontSize="14">Ingreso de Tiempo</Label>
+            <Label Grid.Row="1" Grid.Column="0" Foreground="White">Inicio</Label>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
@@ -66,8 +71,8 @@
                 <ComboBox Name="cbInHour" Grid.Column="0" Margin="7"  />
                 <ComboBox Name="cbInMinutes" Grid.Column="1" Margin="7" />
             </Grid>
-            <Label Grid.Row="1" Grid.Column="0" Foreground="White">Finaliza</Label>
-            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" >
+            <Label Grid.Row="2" Grid.Column="0" Foreground="White">Finaliza</Label>
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
@@ -76,33 +81,35 @@
                 <ComboBox Name="cbFinMinutes" Grid.Column="1" Margin="7" />
             </Grid>
 
-            <Label Grid.Row="2" Grid.Column="0" Foreground="White">Notas</Label>
-            <TextBox x:Name="txtNotes" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Width="120" Margin="8" HorizontalAlignment="Center" Click="AddTime_Click">
+            <Label Grid.Row="3" Grid.Column="0" Foreground="White">Notas</Label>
+            <TextBox x:Name="txtNotes" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Width="120" Margin="8" HorizontalAlignment="Center" Click="AddTime_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
-                </Button.Resources> Agregar Tiempo</Button>
-            <Button Grid.Row="3" Grid.Column="2"  Margin="8" Click="Limpiar_Click" >
+                </Button.Resources> Agregar Tiempo
+            </Button>
+            <Button Grid.Row="4" Grid.Column="2"  Margin="8" Click="Limpiar_Click" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
-                </Button.Resources> Limpiar</Button>
+                </Button.Resources> Limpiar
+            </Button>
             <!-- Resumen-->
-            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="24,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontSize="14" >Resumen Tiempo</Label>
-            <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Horas</Label>
-            <Label Name="lblHoras" Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >N Horas</Label>
-            <Label Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Dias</Label>
-            <Label Name="lblDias" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >N dias</Label>
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="24,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" >Resumen Tiempo en Tarea</Label>
+            <Label Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Horas</Label>
+            <Label Name="lblHoras" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >N Horas</Label>
+            <Label Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Dias</Label>
+            <Label Name="lblDias" Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >N dias</Label>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" >
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Margin="0,12,0,0">
+            <Grid Grid.Row="0" Margin="0,12,0,0" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.6*" />
                     <ColumnDefinition Width="1*" />
@@ -143,7 +150,8 @@
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
                                             </Style>
-                                        </Button.Resources> Eliminar</Button>
+                                        </Button.Resources> Eliminar
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

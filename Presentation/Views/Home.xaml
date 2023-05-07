@@ -14,7 +14,9 @@
     <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="28" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0"   >
@@ -38,7 +40,8 @@
                 <MenuItem Header="Acerca de" Click="AboutPage"/>
             </MenuItem>
         </Menu>
-        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Label Grid.Row="1" Foreground="White" FontSize="14"  HorizontalContentAlignment="Center">Agregar Tarea</Label>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <Grid.Resources >
                     <Style TargetType="Border" >
                         <Setter Property="Padding" Value="5,5,5,5" />
@@ -90,8 +93,8 @@
                     </Button.Resources> Cancelar</Button>
                 </Grid>
             </Grid>
-
-        <ListView  Grid.Row="2"  Name="listViewTaskItems" Margin="8" >
+        <Label Grid.Row="3" Foreground="White" FontSize="14"  HorizontalContentAlignment="Center">Lista de Tareas</Label>
+        <ListView  Grid.Row="4"  Name="listViewTaskItems" Margin="8" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>

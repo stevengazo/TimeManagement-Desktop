@@ -33,21 +33,62 @@ namespace Presentation.Views
 			loadCategories();
 			LoadPriorities();
 		}
-		private async void CanModificateViewTask(object target, CanExecuteRoutedEventArgs e)
-		{
-			e.CanExecute = true;
-		}
+
+
+
+		#region Applications Commands
 		private async void CanExecuteViewTask(object target, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = true;
 		}
-		private async void ViewEditItem(object target, ExecutedRoutedEventArgs e)
+		private async void ViewTaskItem(object target, ExecutedRoutedEventArgs e)
 		{
 			var numberOfTask = int.Parse(e.Parameter.ToString());
 			TempData.TaskItemId = numberOfTask;
-			EditTask editTaskWindow = new EditTask();
-			editTaskWindow.ShowDialog();
+			ViewTaskItem viewTaskItemWindow = new();
+			viewTaskItemWindow.Show();
 		}
+		private async void CanExecuteDeleteTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void CanExecuteEditTask(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void EditTaskItem(object target, ExecutedRoutedEventArgs args)
+		{
+			try
+			{
+				var numberOfTask = int.Parse(args.Parameter.ToString());
+				TempData.TaskItemId = numberOfTask;
+				EditTask editTask = new EditTask();
+				editTask.ShowDialog();
+				await LoadTasks();
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
+		private async void DisableTaskItem(object target, ExecutedRoutedEventArgs args)
+		{
+			try
+			{
+				var numberOfTask = int.Parse(args.Parameter.ToString());
+				bool isDisable = await B_Task.DisableTask(numberOfTask);
+				if (isDisable)
+				{
+					await LoadTasks();
+				}
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
+		#endregion
+		
 		private async Task LoadPriorities()
 		{
 			try
@@ -80,19 +121,14 @@ namespace Presentation.Views
 				this.Close();
 			}
 		}
-		private async void ViewTaskItem(object target, ExecutedRoutedEventArgs e)
-		{
-			var numberOfTask = int.Parse(e.Parameter.ToString());
-			TempData.TaskItemId = numberOfTask;
-			ViewTaskItem viewTaskItemWindow = new();
-			viewTaskItemWindow.ShowDialog();
-		}
+	
 		private async Task LoadTasks()
 		{
 			try
 			{
 				TasksList = await B_Task.ListTaskItemsAsync(TempData.UserToReview.UserId, true);
-				listViewTaskItems.ItemsSource = TasksList;
+
+				listViewTaskItems.ItemsSource = TasksList.OrderByDescending(T=>T.CreationDate).ToList();
 			}
 			catch (Exception ex)
 			{

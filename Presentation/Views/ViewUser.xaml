@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Ver Usuario" Height="450" Width="800" ResizeMode="NoResize" SizeToContent="Height" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="450"
+        Title="Ver Usuario" MinHeight="450" MinWidth="800" Height="450" Width="800"  SizeToContent="Height" WindowStartupLocation="CenterScreen" 
         Background="#003566"
         >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
+        <CommandBinding Command="ApplicationCommands.Delete" Executed="DisableTaskItem" CanExecute=" CanExecuteDeleteTask" />
+        <CommandBinding Command="ApplicationCommands.Properties" Executed="EditTaskItem" CanExecute="CanExecuteEditTask" />
     </Window.CommandBindings>        
     <Grid >
         <Grid.RowDefinitions>
@@ -138,24 +140,29 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
+                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources> Ver</Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White"/>
+                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}"  Content="Editar" Foreground="White">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                       <!-- <GridViewColumn><GridViewColumn.CellTemplate><DataTemplate><Button Name="BtnFinishTaskItem"  Width="60" Background="Blue" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}"  Content="Finalizar" Foreground="White"><Button.Resources><Style TargetType="Border"><Setter Property="CornerRadius" Value="5"/></Style></Button.Resources></Button></DataTemplate></GridViewColumn.CellTemplate></GridViewColumn> -->
                     </GridView>
                 </ListView.View>
             </ListView>

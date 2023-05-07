@@ -39,7 +39,7 @@ namespace Presentation.Views
 				var id = int.Parse(e.Parameter.ToString());
 				TempData.UserToReview = await B_User.GetUserAsync(id);
 				ViewUser viewUserWindows = new();
-				viewUserWindows.ShowDialog();
+				viewUserWindows.Show();
 				LoadUsersAsync();
 			}catch(Exception ex)
 			{
