@@ -154,7 +154,7 @@ namespace Presentation
 			if (TempData.CurrentUser.IsAdmin)
 			{
 				PerformanceTaskPage performanceTaskPage = new();
-				performanceTaskPage.ShowDialog();
+				performanceTaskPage.Show();
 			}else
 			{
 				MessageBox.Show("Debes ser administrador para ingresar a esta función", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);

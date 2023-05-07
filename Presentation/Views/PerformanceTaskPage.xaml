@@ -44,7 +44,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Label Content="Cantidad de Tareas por Categoría" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
+            <Label Content="Tareas Registradas (según fecha registro)" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
             <lvc:CartesianChart Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Name="chart1" LegendLocation="Left" Margin="10">
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis Name="chart1AxisY" Foreground="White" ></lvc:Axis>
@@ -53,7 +53,7 @@
                     <lvc:Axis Title="Mes" Foreground="White" Name="chart1AxisX" />
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>
-            <Label Content="Tiempo Inventido por Categoría al Mes" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
+            <Label Content="Tiempo Registrado por Día al Mes" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
             <lvc:CartesianChart Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Name="chart2" LegendLocation="Left" Margin="10">
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis Name="chart2AxisY" Foreground="White" ></lvc:Axis>
@@ -62,7 +62,15 @@
                     <lvc:Axis Title="Mes" Foreground="White" Name="chart2AxisX" />
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>
-            <Label Content="Tiempo Promedio de Trabajo por Día" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
+            <Label Content="Distribución de Tiempo en Categorias (registrado en el mes)" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
+            <lvc:PieChart  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Name="ChartPie1"  LegendLocation="Right" InnerRadius="40" Margin="0 15">
+                <lvc:PieChart.ChartLegend>
+                    <lvc:DefaultLegend BulletSize="20"></lvc:DefaultLegend>
+                </lvc:PieChart.ChartLegend>
+                <lvc:PieChart.DataTooltip>
+                    <lvc:DefaultTooltip BulletSize="20"></lvc:DefaultTooltip>
+                </lvc:PieChart.DataTooltip>
+            </lvc:PieChart>
         </Grid>
     </Grid>
 </Window>

@@ -13,6 +13,75 @@ namespace Business
 {
 	public static class B_Time
 	{
+
+		public static async Task<Dictionary<string,float>> TimePeerCategory(int monthId, int UserId)
+		{
+			try
+			{
+				using TimeDatabaseContext db = new();
+				var queryConsult =await  (from T in db.TimeItems
+											join Ta in db.TaskItems
+											on T.TaskItemId equals Ta.TaskItemId
+											join C in db.CategoryItems
+											on Ta.CategoryItemId equals C.CategoryItemId
+											where (T.StartTime.Month == monthId) && (Ta.UserId == UserId) && (T.StartTime.Year == DateTime.Today.Year)
+											select new { T.TimeItemId , C.Name, T.StartTime, T.EndTime }
+											).ToListAsync();
+				var Categories = queryConsult.DistinctBy(q => q.Name);
+				Dictionary<string, float> DicCategoryWithtime = new();
+                foreach (var item in Categories)
+                {
+					TimeSpan totaltime = new();
+					var times = queryConsult.Where(Q => Q.Name.Equals(item.Name)).ToList();
+                    foreach (var time in times)
+                    {
+						totaltime = totaltime + ( time.EndTime - time.StartTime );
+                    }
+					var result = (totaltime.TotalMinutes / 60);
+					float timeF = (float) double.Round(result, 2);
+					DicCategoryWithtime.Add(item.Name, timeF);
+                }
+				return DicCategoryWithtime;
+            }
+            catch(Exception f)
+			{
+				MessageBox.Show($"Error en TimePeerCategory {f.Message}");
+				return null;
+			}
+		}
+		public static async Task<Dictionary<string,float>> TimeByDay(int numberOfMonth, int UserId)
+		{
+			try
+			{
+				using TimeDatabaseContext db = new();
+				var consult = (from Ti in db.TimeItems
+							   join Ta in db.TaskItems
+							   on Ti.TaskItemId equals Ta.TaskItemId
+							   where (Ta.UserId == UserId) && (Ti.StartTime.Month == numberOfMonth) && (Ti.StartTime.Year == DateTime.Today.Year)
+							   select Ti
+								).ToList();
+
+				var DaysOfMont = DateTime.DaysInMonth(DateTime.Today.Year, numberOfMonth);
+				Dictionary<string, float> DaysOfTheMonth = new();
+				for (int i = 0; i < DaysOfMont; i++)
+				{
+					TimeSpan TimeByDay = new();
+					var ListOfRegisterByDay = (from T in consult where T.StartTime.Day == i select T).ToList();
+                    foreach (var item in ListOfRegisterByDay)
+                    {
+						TimeByDay = TimeByDay + (item.EndTime - item.StartTime);
+                    }
+					var time = (float) TimeByDay.TotalMinutes / 60;
+					DaysOfTheMonth.Add(i.ToString(), time);
+                }
+				return DaysOfTheMonth;
+            }
+            catch(Exception f)
+			{
+				MessageBox.Show($"Error en TimeByDay -{f.Message}");
+				return null;
+			}
+		}
 		public static async Task<List<TimeItem>> ListTimeItemsAsync(DateTime dateTimeToSearch, int taskId)
 		{
 			try
