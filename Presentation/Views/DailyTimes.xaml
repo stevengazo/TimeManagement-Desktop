@@ -11,7 +11,7 @@
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -23,9 +23,21 @@
                 <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="Fecha de Busqueda" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="White" />
-            <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-            <Button  Grid.Column="2" Content="Buscar" Margin="15" Click="SearchTask_Click"   />
-            <Button  Grid.Column="3" Content="Limpiar" Margin="15" Click="Clean_Click" />
+            <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center" Width="120"  VerticalAlignment="Center"/>
+            <Button  Grid.Column="2" Content="Buscar" Margin="15" Click="SearchTask_Click"   >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button  Grid.Column="3" Content="Limpiar" Margin="15" Click="Clean_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Label  Name="lblTiempo" Grid.Column="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></Label>
         </Grid>
         <ListView x:Name="listViewTask" Grid.Row="1" Margin="8">
@@ -44,7 +56,12 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources> Ver</Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

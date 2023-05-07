@@ -23,7 +23,13 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, &#10;
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING &#10;
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR &#10;
 OTHER DEALINGS IN THE SOFTWARE."  HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" Height="324" Width="528" FontSize="12"/>
-        <Button x:Name="button" Foreground="White" Background="DarkGray" Content="More Information" HorizontalAlignment="Left" Margin="248,346,0,0" VerticalAlignment="Top" Height="20" Width="100" Click="button_Click"/>
+        <Button x:Name="button" Foreground="White"  Padding="5" Background="DarkGray" Content="More Information" HorizontalAlignment="Left" Margin="248,346,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="button_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
 
     </Grid>

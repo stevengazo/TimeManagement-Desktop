@@ -25,14 +25,21 @@
             <Label  x:Name="lblPassword"  HorizontalContentAlignment="Center" Content="Contraseña"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.451" Width="86" Foreground="White"/>
         </StackPanel>
         <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <PasswordBox x:Name="txtPassword" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+            <PasswordBox x:Name="txtPassword" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120">
+            </PasswordBox>
         </StackPanel>
 
         <StackPanel Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <CheckBox  x:Name="ckBPassword" Content="Recordar" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
         </StackPanel>
         <StackPanel Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button  x:Name="btnInicio" Content="Ingresar" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Click=" OnLoging"/>
+            <Button  x:Name="btnInicio" Content="Ingresar" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Click=" OnLoging">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

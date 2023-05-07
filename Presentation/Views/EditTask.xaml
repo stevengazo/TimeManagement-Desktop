@@ -21,22 +21,34 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Titulo" Margin="0,0,0,47" Grid.RowSpan="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Titulo" Margin="0,0,0,47" Grid.RowSpan="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
         <TextBox x:Name="txtTitulo"  Grid.Row="0" Grid.Column="1" Margin="10,10,10,10" />
-        <Label  Grid.Row="1" Grid.Column="0" Content="Descripción"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+        <Label  Grid.Row="1" Grid.Column="0" Content="Descripción"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" />
         <TextBox x:Name="txtDescripción" Grid.Row="1" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="1" Grid.Column="0" Content="Fecha Creación" Margin="0,47,0,0" Grid.RowSpan="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"  />
+        <Label Grid.Row="1" Grid.Column="0" Content="Fecha Creación" Margin="0,47,0,0" Grid.RowSpan="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"  />
         <DatePicker Name="datePickerCreationDate" Grid.Row="2" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="2" Grid.Column="0" Content="Categoria" Margin="0,48,0,48" Grid.RowSpan="3"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Categoria" Margin="0,48,0,48" Grid.RowSpan="3"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" />
         <ComboBox Name="cbCategory" Grid.Row="3" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="4" Grid.Column="0" Content="Prioridad" Margin="0,0,0,47" Grid.RowSpan="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+        <Label Grid.Row="4" Grid.Column="0" Content="Prioridad" Margin="0,0,0,47" Grid.RowSpan="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" />
         <ComboBox Name="cbPriority" Grid.Row="4" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="5" Grid.Column="0" Content="Empleado"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+        <Label Grid.Row="5" Grid.Column="0" Content="Empleado"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" />
         <ComboBox Name="cbEmployee" Grid.Row="5" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="6" Grid.Column="0" Content="Estado"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
+        <Label Grid.Row="6" Grid.Column="0" Content="Estado"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" />
         <ComboBox Name="cbStatus" Grid.Row="6" Grid.Column="1" Margin="10,10,10,10" />
-        <Button Grid.Row="7" Grid.Column="0" Margin="10,10,10,10"   Content="Actualizar"  Click="UpdateTask_Click"/>
-        <Button Grid.Row="7" Grid.Column="1" Margin="10,10,10,10"  Content="Cancelar" Click="Cancel_Click" />
+        <Button Grid.Row="7" Grid.Column="0" Margin="10,10,10,10"   Content="Actualizar"  Click="UpdateTask_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="1" Margin="10,10,10,10"  Content="Cancelar" Click="Cancel_Click" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>

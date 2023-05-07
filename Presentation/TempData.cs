@@ -13,5 +13,6 @@ namespace Presentation
 		internal static int TaskItemId { get; set; }
 		internal static User CurrentUser { get; set; }	
 		internal static User UserToReview { get; set;}
+		internal static int TimeItemId { get; set; }
 	}
 }

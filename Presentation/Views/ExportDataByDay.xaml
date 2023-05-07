@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="25" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="25" />
@@ -29,28 +29,55 @@
             </Grid.ColumnDefinitions>
             <Label Foreground="White" Grid.Column="0" Content="Fecha de Busqueda" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
             <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-            <Button  Grid.Column="2" Content="Buscar" Margin="5" Click="SearchTask_Click"  />
-            <Button  Grid.Column="3" Content="Limpiar" Margin="5" Click="Clean_Click" />
-            <Button  Grid.Column="4" Content="Exportar" Margin="5"  Click="Export_Click"  />
+            <Button  Grid.Column="2" Content="Buscar" Margin="10" Click="SearchTask_Click"  >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button  Grid.Column="3" Content="Limpiar" Margin="10" Click="Clean_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button  Grid.Column="4" Content="Exportar" Margin="10"  Click="Export_Click"  >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
         <Label Grid.Row="2" HorizontalAlignment="Center" FontSize="12" Foreground="White" >Labores Registradas en el Día Seleccionado</Label>
         <ListView x:Name="listViewTask"  Grid.Row="3" Margin="10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="N° Tarea" Width="80" DisplayMemberBinding="{Binding TaskItemId}"/>
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding TaskItemId}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="TaskItemId" Click="lvUsersColumnHeader_Click">N°</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                     <GridViewColumn Header="Tarea" Width="80" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Header="Prioridad" Width="80" DisplayMemberBinding="{Binding Priority}"/>
                     <GridViewColumn Header="Categoria" Width="80" DisplayMemberBinding="{Binding Type}"/>
                     <GridViewColumn Header="Usuario" Width="80" DisplayMemberBinding="{Binding UserName}"/>
                     <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}"/>
                     <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}"/>
-                    <GridViewColumn Header="Inicio" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt }'}"/>
-                    <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}"/>
+                    <GridViewColumn Header="Inicio" Width="80" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt }'}"/>
+                    <GridViewColumn Header="Final" Width="80" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}"/>
                     <GridViewColumn Header="Notas" Width="240" DisplayMemberBinding="{Binding notes}"/>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources> Ver</Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

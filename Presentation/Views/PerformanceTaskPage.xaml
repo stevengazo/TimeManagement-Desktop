@@ -10,7 +10,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Foreground="White" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="18" Content="Estadisticas de los Usuarios" />
@@ -27,7 +27,13 @@
             <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Mes" Foreground="White" FontSize="15" />
             <ComboBox Name="cbUsers" Grid.Column="1" Margin="5" />
             <ComboBox Name="cbmonths" Grid.Column="3" Margin="5" />
-            <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" />
+            <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
         <Grid Grid.Row="2" Background="DarkGray" Margin="0,4,0,-4" >
             <Grid.ColumnDefinitions>

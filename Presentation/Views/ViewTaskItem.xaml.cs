@@ -32,6 +32,24 @@ namespace Presentation.Views
 			LoadCombobox();
 		}
 		#region applicationscommands
+		private async void CanExecuteEditTime(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+		private async void EditTimeItem(object target, ExecutedRoutedEventArgs args)
+		{
+			try
+			{				
+				TempData.TimeItemId = int.Parse(args.Parameter.ToString());
+				EditTime editTime = new();
+				editTime.ShowDialog();
+				LoadTask();
+			}
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message);
+			}
+		}
 		private async void CanExecuteDeleteTask(object target, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = true;
@@ -151,7 +169,8 @@ namespace Presentation.Views
 						Hours = Hours,
 						Minutes = Minutes,
 						StartTime = item.StartTime,
-						EndTime = item.EndTime						
+						EndTime = item.EndTime	,
+						Notes = item.Notes
 					};
 					totalTime = totalTime + TimeWorked;
 					listTimes.Add(i);

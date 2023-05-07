@@ -41,7 +41,11 @@ namespace Presentation.Views
 			viewTaskItemWindow.ShowDialog();
 		}
 
-		private async void SearchTask_Click(object sender, RoutedEventArgs e)
+		private void lvUsersColumnHeader_Click(object sender, RoutedEventArgs e)
+		{ 
+		}
+
+			private async void SearchTask_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{

@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" >Exportado de Datos de Usuario Por Mes</Label>
@@ -30,9 +30,27 @@
             <ComboBox Name="cbUsers" Grid.Column="1" Margin="5" />
             <Label Grid.Column="2" Content="Mes"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
             <ComboBox Name="cbMonth" Grid.Column="3" Margin="5" />
-            <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" />
-            <Button Grid.Column="5" Margin="5" Content="Exportar" Click="ExportData_click" />
-            <Button Grid.Column="6" Margin="5" Content="Limpiar" Click="Button_Click" />
+            <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="5" Margin="5" Content="Exportar" Click="ExportData_click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="6" Margin="5" Content="Limpiar" Click="Button_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
         <ListView  Grid.Row="2" x:Name="listView" Margin="6" >
             <ListView.View>
@@ -40,11 +58,11 @@
                     <GridViewColumn Header="N" Width="20" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Header="Categoria" Width="111" DisplayMemberBinding="{Binding Category}"/>
-                    <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding Priority}"/>
-                    <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding Status}"/>
-                    <GridViewColumn Header="Usuario" Width="111" DisplayMemberBinding="{Binding User}"/>
-                    <GridViewColumn Header="Horas invertidas" Width="111" DisplayMemberBinding="{Binding QuantityOfHours}"/>
-                    <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding Created, StringFormat='{}{0:dd-MM-yyyy }'}"/>
+                    <GridViewColumn Header="Prioridad" Width="1" DisplayMemberBinding="{Binding Priority}"/>
+                    <GridViewColumn Header="Estado" Width="140" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Usuario" Width="100" DisplayMemberBinding="{Binding User}"/>
+                    <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding QuantityOfHours}"/>
+                    <GridViewColumn Header="Fecha" Width="80" DisplayMemberBinding="{Binding Created, StringFormat='{}{0:dd-MM-yyyy }'}"/>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

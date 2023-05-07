@@ -27,21 +27,38 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center">Ver</Button>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources> Ver</Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" />
+                                <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" >
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Activar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" />
+                                <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Activar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" >
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

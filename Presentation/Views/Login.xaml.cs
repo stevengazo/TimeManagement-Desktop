@@ -19,7 +19,7 @@ namespace Presentation
 		public Login()
 		{
 			InitializeComponent();
-			Task.Run(LoadCredentialsAsync);
+			LoadCredentialsAsync();
 		}
 		private async void OnLoging(object sender, RoutedEventArgs e)
 		{
@@ -59,7 +59,6 @@ namespace Presentation
 			try
 			{
 				string urlArchivo = Path.Combine(Directory.GetCurrentDirectory(), "temporals.xml");
-
 				if (File.Exists(urlArchivo))
 				{
 					File.Delete(urlArchivo);
@@ -71,35 +70,39 @@ namespace Presentation
 													new XElement("root",
 														new XElement(nameof(User.UserId), user),
 														new XElement(nameof(User.Password), pass)
-														));
-			
+														));			
 				document.Save(urlArchivo);
 			}
 			catch(Exception f)
 			{
 				MessageBox.Show(f.Message,"Error SaveCredentias");
-			}
-			
+			}			
 		}
 		private async Task LoadCredentialsAsync()
 		{
-			string urlArchivo = Path.Combine(Directory.GetCurrentDirectory(), "temporals.xml");
-			if (File.Exists(urlArchivo))
+			try
 			{
-				var data = new FileStream(urlArchivo, FileMode.Open, FileAccess.Read);
-				var documento = new XmlDataDocument();
-				documento.Load(data);
-				XmlNodeList nodeList = documento.GetElementsByTagName("root");
-				string userId = string.Empty;
-				string password = string.Empty;
-				foreach (XmlNode item in nodeList)
+				string urlArchivo = Path.Combine(Directory.GetCurrentDirectory(), "temporals.xml");
+				if (File.Exists(urlArchivo))
 				{
-					userId = item.SelectSingleNode(nameof(User.UserId)).InnerText.ToString();
-					password = item.SelectSingleNode(nameof(User.Password)).InnerText.ToString();
+					var data = new FileStream(urlArchivo, FileMode.Open, FileAccess.Read);
+					var documento = new XmlDataDocument();
+					documento.Load(data);
+					XmlNodeList nodeList = documento.GetElementsByTagName("root");
+					string userId = string.Empty;
+					string password = string.Empty;
+					foreach (XmlNode item in nodeList)
+					{
+						userId = item.SelectSingleNode(nameof(User.UserId)).InnerText.ToString();
+						password = item.SelectSingleNode(nameof(User.Password)).InnerText.ToString();
+					}
+					txtPassword.Password = password;
+					txtUsuario.Text = userId;
+					ckBPassword.IsChecked = true;
 				}
-				txtPassword.Password = password;
-				txtUsuario.Text = userId;
-				ckBPassword.IsChecked = true;
+			}catch(Exception f)
+			{
+				MessageBox.Show(f.Message);
 			}
 		}
 	}

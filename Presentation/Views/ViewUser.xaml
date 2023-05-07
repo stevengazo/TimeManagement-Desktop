@@ -54,10 +54,34 @@
                 <TextBox Name="txtIdUser" IsEnabled="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                 <TextBox Name="txtName" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
                 <TextBox Name="txtLastName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="25" />
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Width="180"  Grid.Row="3"  Content="Editar" Click="EditUser_Click" />
-                <Button x:Name="btnLoginState" Grid.Column="0" Width="180" Grid.ColumnSpan="2" Margin="5"  Grid.Row="4"  Content="Desactivar Usuario" Click="DisableUser_Click" />
-                <Button x:Name="btnAdminState" Grid.Column="0" Width="180" Grid.ColumnSpan="2" Margin="5"  Grid.Row="5"  Content="Cambiar Rol" Click="ChangeAdminRol_Click" />
-                <Button x:Name="btnChangePass" Grid.Column="0" Width="180" Grid.ColumnSpan="2" Margin="5"  Grid.Row="6"  Content="Cambiar Contraseña" Click="ChangePassword_Click" />
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Width="120"  Grid.Row="3"  Content="Editar" Click="EditUser_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnLoginState" Grid.Column="0" Width="120" Grid.ColumnSpan="2" Margin="5"  Grid.Row="4"  Content="Desactivar Usuario" Click="DisableUser_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnAdminState" Grid.Column="0" Width="120" Grid.ColumnSpan="2" Margin="5"  Grid.Row="5"  Content="Cambiar Rol" Click="ChangeAdminRol_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnChangePass" Grid.Column="0" Width="120" Grid.ColumnSpan="2" Margin="5"  Grid.Row="6"  Content="Cambiar Contraseña" Click="ChangePassword_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Grid>
         <Line Grid.Column="1" Grid.Row="0" Grid.RowSpan="4"
@@ -89,8 +113,20 @@
                 <ComboBox Name="cbPriority" Grid.Column="3" Margin="5" />
                 <Label  Foreground="White" Grid.Column="4" Content="Tiempos"  HorizontalAlignment="Center" VerticalAlignment="Center"  />
                 <DatePicker Name="dtpSearchDate" Grid.Column="5" Margin="5" />
-                <Button Grid.Column="6" Content="Buscar" Margin="5" Click="Seach_Click" />
-                <Button Grid.Column="7" Content="Exportar" Margin="5" Click="Export_Click" />
+                <Button Grid.Column="6"  Content="Buscar" Margin="8" Click="Seach_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Column="7" Content="Exportar" Margin="8" Click="Export_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
             <ListView  Grid.Row="1" Name="listViewTaskItems" Margin="5" >
                 <ListView.View>
