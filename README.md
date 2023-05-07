@@ -20,8 +20,6 @@ The project consist in a desktop app (using windows presentation fundation) and 
 
 This is the diagram of classes propose for the develop of the app:
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b13a48f-a403-42fb-8c77-240cdc940edd/Untitled.png)
-
 - **StatusItem**: this class will have the objetive of set the status of the task (if the tasks are complete, are in pending, etc)
 - **TaskItem**: this class have the basic information about the task, the name of the task, a litle description of the task, and the date of creation.
 - **CategoryItem**: this class have the categories of task (
