@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Inicio" Height="450" Width="750" WindowStartupLocation="CenterScreen" >
+        Title="Inicio" MinHeight="450" MinWidth="750" Height="450" Width="750" WindowStartupLocation="CenterScreen" Background="#001d3d" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
         <CommandBinding Command="ApplicationCommands.Delete" Executed="DisableTaskItem" CanExecute=" CanExecuteDeleteTask" />
         <CommandBinding Command="ApplicationCommands.Properties" Executed="EditTaskItem" CanExecute="CanExecuteEditTask" />
     </Window.CommandBindings>
-    <Grid>
+    <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0"  >
+        <Menu Grid.Row="0"   >
             <MenuItem Header="_Archivo">
                 <MenuItem Header="Cambiar Contraseña" Click="ChangePassword_Click" />
                 <Separator/>
@@ -38,8 +38,7 @@
                 <MenuItem Header="Acerca de" Click="AboutPage"/>
             </MenuItem>
         </Menu>
-        <GroupBox Grid.Row="1" x:Name="groupBoxTarea" Header="Registro Tarea" >
-            <Grid>
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <Grid.Resources >
                     <Style TargetType="Border" >
                         <Setter Property="Padding" Value="5,5,5,5" />
@@ -59,17 +58,17 @@
                     <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="70" />
                 </Grid.ColumnDefinitions>
-                <Label  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Titulo</Label>
+                <Label  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Titulo</Label>
                 <TextBox Grid.Row="0" Grid.Column="1" Width="100" x:Name="txtTitle" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
-                <Label  Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">Descripción</Label>
+                <Label  Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Descripción</Label>
                 <TextBox Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Width="250" x:Name="txtDescription" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
-                <Label  Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Fecha</Label>
+                <Label  Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Fecha</Label>
                 <DatePicker Name="dptDate" Grid.Row="0" Grid.Column="3" Width="100" />
-                <Label  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Estado</Label>
+                <Label  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Estado</Label>
                 <ComboBox Name="cbStatus" Grid.Row="2" Grid.Column="3" Width="100" Height="20" />
-                <Label  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Prioridad</Label>
+                <Label  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Prioridad</Label>
                 <ComboBox Name="cbPriority" Grid.Row="2" Grid.Column="1" Width="100" Height="20" />
-                <Label  Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">Categoria</Label>
+                <Label  Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">Categoria</Label>
                 <ComboBox Name="cbCategory" Grid.Row="2" Grid.Column="5" Width="100" Height="20" />                
                 <Grid Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -80,10 +79,9 @@
                     <Button  Grid.Column="1" Width="60" Height="20" Click="CleanInputs" >Cancelar</Button>
                 </Grid>
             </Grid>
-        </GroupBox>
-        <GroupBox Grid.Row="2" x:Name="groupBox" Header="Lista Tareas" >
-            <ListView  Name="listViewTaskItems" >
-                <ListView.View>
+
+        <ListView  Grid.Row="2"  Name="listViewTaskItems" Margin="8" >
+            <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:dd-MM-yyyy }'}"/>
@@ -99,20 +97,19 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" />
+                                <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Finalizar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

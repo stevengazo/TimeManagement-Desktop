@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:Presentation.Views"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="Rendimiento" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
+        Title="Rendimiento" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="#001d3d" >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
             <RowDefinition Height="40" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="DarkGray">
+        <Label Grid.Row="0" Foreground="White" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="18" Content="Estadisticas de los Usuarios" />
+        <Grid Grid.Row="1" Background="#001d3d">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -26,11 +28,8 @@
             <ComboBox Name="cbUsers" Grid.Column="1" Margin="5" />
             <ComboBox Name="cbmonths" Grid.Column="3" Margin="5" />
             <Button Grid.Column="4" Margin="5" Content="Buscar" Click="Search_Click" />
-
-
-
         </Grid>
-        <Grid Grid.Row="1" Background="LightGray" >
+        <Grid Grid.Row="2" Background="DarkGray" Margin="0,4,0,-4" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -41,18 +40,29 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Label Content="Gráficos" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14" />
+            <Label Content="Cantidad de Tareas por Categoría" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
             <lvc:CartesianChart Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Name="chart1" LegendLocation="Left" Margin="10">
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Name="chart1AxisY" ></lvc:Axis>
+                    <lvc:Axis Name="chart1AxisY" Foreground="White" ></lvc:Axis>
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Mes"  Name="chart1AxisX" />
+                    <lvc:Axis Title="Mes" Foreground="White" Name="chart1AxisX" />
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>
+            <Label Content="Tiempo Inventido por Categoría al Mes" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
+            <lvc:CartesianChart Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Name="chart2" LegendLocation="Left" Margin="10">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Name="chart2AxisY" Foreground="White" ></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Mes" Foreground="White" Name="chart2AxisX" />
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+            <Label Content="Tiempo Promedio de Trabajo por Día" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="14" />
         </Grid>
     </Grid>
 </Window>

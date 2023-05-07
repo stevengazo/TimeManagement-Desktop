@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Acerca de" Height="450" Width="600" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+        Title="Acerca de" Height="450" Width="600" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Background="#003566">
     <Grid Opacity="0.7">
-        <Label x:Name="label" Content="The MIT License (MIT)&#10;Copyright © 2023 Steven Fabricio Gazo Maliaño&#10;&#10;
+        <Label x:Name="label" Foreground="White" Content="The MIT License (MIT)&#10;Copyright © 2023 Steven Fabricio Gazo Maliaño&#10;&#10;
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software &#10;
 and associated documentation files (the “Software”), to deal in the Software without restriction, &#10;
 including without limitation the rights to use, copy, modify, merge, publish, distribute, &#10;
@@ -23,7 +23,7 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, &#10;
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING &#10;
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR &#10;
 OTHER DEALINGS IN THE SOFTWARE."  HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" Height="324" Width="528" FontSize="12"/>
-        <Button x:Name="button" Content="More Information" HorizontalAlignment="Left" Margin="248,346,0,0" VerticalAlignment="Top" Height="20" Width="100" Click="button_Click"/>
+        <Button x:Name="button" Foreground="White" Background="DarkGray" Content="More Information" HorizontalAlignment="Left" Margin="248,346,0,0" VerticalAlignment="Top" Height="20" Width="100" Click="button_Click"/>
 
 
     </Grid>

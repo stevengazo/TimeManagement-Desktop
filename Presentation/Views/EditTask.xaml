@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Editar Tarea" Height="380" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Editar Tarea"  Height="380" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#003566">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="61*" />
@@ -21,19 +21,19 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Titulo" Margin="0,0,0,47" Grid.RowSpan="2" />
+        <Label Grid.Row="0" Grid.Column="0" Content="Titulo" Margin="0,0,0,47" Grid.RowSpan="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
         <TextBox x:Name="txtTitulo"  Grid.Row="0" Grid.Column="1" Margin="10,10,10,10" />
-        <Label  Grid.Row="1" Grid.Column="0" Content="Descripción" />
+        <Label  Grid.Row="1" Grid.Column="0" Content="Descripción"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
         <TextBox x:Name="txtDescripción" Grid.Row="1" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="1" Grid.Column="0" Content="Fecha Creación" Margin="0,47,0,0" Grid.RowSpan="2" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Fecha Creación" Margin="0,47,0,0" Grid.RowSpan="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"  />
         <DatePicker Name="datePickerCreationDate" Grid.Row="2" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="2" Grid.Column="0" Content="Categoria" Margin="0,48,0,48" Grid.RowSpan="3" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Categoria" Margin="0,48,0,48" Grid.RowSpan="3"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
         <ComboBox Name="cbCategory" Grid.Row="3" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="4" Grid.Column="0" Content="Prioridad" Margin="0,0,0,47" Grid.RowSpan="2" />
+        <Label Grid.Row="4" Grid.Column="0" Content="Prioridad" Margin="0,0,0,47" Grid.RowSpan="2"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
         <ComboBox Name="cbPriority" Grid.Row="4" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="5" Grid.Column="0" Content="Empleado" />
+        <Label Grid.Row="5" Grid.Column="0" Content="Empleado"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
         <ComboBox Name="cbEmployee" Grid.Row="5" Grid.Column="1" Margin="10,10,10,10" />
-        <Label Grid.Row="6" Grid.Column="0" Content="Estado" />
+        <Label Grid.Row="6" Grid.Column="0" Content="Estado"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" />
         <ComboBox Name="cbStatus" Grid.Row="6" Grid.Column="1" Margin="10,10,10,10" />
         <Button Grid.Row="7" Grid.Column="0" Margin="10,10,10,10"   Content="Actualizar"  Click="UpdateTask_Click"/>
         <Button Grid.Row="7" Grid.Column="1" Margin="10,10,10,10"  Content="Cancelar" Click="Cancel_Click" />

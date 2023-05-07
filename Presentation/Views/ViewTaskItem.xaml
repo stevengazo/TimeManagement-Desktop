@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Información de Tarea" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Información de Tarea" MinHeight="450" Height="450"  MinWidth="800" Width="800" WindowStartupLocation="CenterScreen" Background="#003566" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Delete" Executed="DeleteTimeItem" CanExecute="CanExecuteDeleteTask" />
     </Window.CommandBindings>
@@ -18,118 +18,109 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="0" Grid.Column="0" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White">Titulo</Label>
+            <Label Name="lblTitle" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White"></Label>
+            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White">Fecha Ingreso</Label>
+            <Label Name="lblDate" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White"></Label>
+            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White">Estado</Label>
+            <Label Name="lblStatus" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White"></Label>
+            <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White">Prioridad</Label>
+            <Label Name="lblPriority" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Foreground="White"></Label>
+            <!-- datos-->
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Foreground="White">Inicio</Label>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Titulo</Label>
-                <Label Name="lblTitle" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"></Label>
-                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Fecha</Label>
-                <Label Name="lblDate" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"></Label>
-                <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Estado</Label>
-                <Label Name="lblStatus" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"></Label>
-                <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center">Prioridad</Label>
-                <Label Name="lblPriority" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"></Label>
-                <!-- datos-->
-
-
+                <ComboBox Name="cbInHour" Grid.Column="0" Margin="7"  />
+                <ComboBox Name="cbInMinutes" Grid.Column="1" Margin="7" />
             </Grid>
-        </GroupBox>
-        <GroupBox Grid.Row="1" Grid.Column="0" >
-            <Grid>
+            <Label Grid.Row="1" Grid.Column="0" Foreground="White">Finaliza</Label>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="10" />
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0">Inicio</Label>
-                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <ComboBox Name="cbInHour" Grid.Column="0" Margin="7"   />
-                    <ComboBox Name="cbInMinutes" Grid.Column="1" Margin="7" />
-                </Grid>
-                <Label Grid.Row="1" Grid.Column="0">Finaliza</Label>
-                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <ComboBox Name="cbFinHour" Grid.Column="0" Margin="7" />
-                    <ComboBox Name="cbFinMinutes" Grid.Column="1" Margin="7" />
-                </Grid>
+                <ComboBox Name="cbFinHour" Grid.Column="0" Margin="7" />
+                <ComboBox Name="cbFinMinutes" Grid.Column="1" Margin="7" />
+            </Grid>
 
-                <Label Grid.Row="2" Grid.Column="0">Notas</Label>
-                <TextBox x:Name="txtNotes" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
-                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="8" HorizontalAlignment="Center" Click="AddTime_Click">Agregar Tiempo</Button>
-                <Button Grid.Row="3" Grid.Column="2"  Margin="8" Click="Limpiar_Click" >Limpiar</Button>
-                <!-- Resumen-->
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" >Resumen Tiempo</Label>
-                <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >Horas</Label>
-                <Label Name="lblHoras" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >N Horas</Label>
-                <Label Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >Dias</Label>
-                <Label Name="lblDias" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >N dias</Label>
+            <Label Grid.Row="2" Grid.Column="0" Foreground="White">Notas</Label>
+            <TextBox x:Name="txtNotes" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" ></TextBox>
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="8" HorizontalAlignment="Center" Click="AddTime_Click">Agregar Tiempo</Button>
+            <Button Grid.Row="3" Grid.Column="2"  Margin="8" Click="Limpiar_Click" >Limpiar</Button>
+            <!-- Resumen-->
+            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="24,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontSize="14" >Resumen Tiempo</Label>
+            <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Horas</Label>
+            <Label Name="lblHoras" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >N Horas</Label>
+            <Label Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >Dias</Label>
+            <Label Name="lblDias" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" >N dias</Label>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Dia a Buscar" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <DatePicker Name="dtpSearchDate" Grid.Column="1" Margin="6" />
+                <Button Grid.Column="2" Content="Buscar" Margin="6" Click="SearchDate_Click" />
+                <Button Grid.Column="3" Content="Limpiar" Margin="6" Click="CleanSearch_Click" />
             </Grid>
-        </GroupBox>
-        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Padding="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <GroupBox Grid.Row="0" Header="Filtros">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.6*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Dia a Buscar" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <DatePicker Name="dtpSearchDate" Grid.Column="1" Margin="6" />
-                        <Button Grid.Column="2" Content="Buscar" Margin="6" Click="SearchDate_Click" />
-                        <Button Grid.Column="3" Content="Limpiar" Margin="6" Click="CleanSearch_Click" />
-                    </Grid>
-                </GroupBox>
-                <ListView Name="listViewTimeItems" Grid.Row="1">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Día" Width="100" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:dd MMMM yyyy}'}"/>
-                            <GridViewColumn Header="Inicio" Width="80" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt}'}"/>
-                            <GridViewColumn Header="Final" Width="80" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}" />
-                            <GridViewColumn Header="Horas" Width="50" DisplayMemberBinding="{Binding Hours}" />
-                            <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}" />
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Name="BtnViewTask"  Width="60" HorizontalContentAlignment="Center" Background="Red" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TimeItemId}" >Eliminar</Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
-        </GroupBox>
+            <ListView Name="listViewTimeItems" Grid.Row="1" Margin="10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Día" Width="100" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:dd MMMM yyyy}'}"/>
+                        <GridViewColumn Header="Inicio" Width="80" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt}'}"/>
+                        <GridViewColumn Header="Final" Width="80" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}" />
+                        <GridViewColumn Header="Horas" Width="50" DisplayMemberBinding="{Binding Hours}" />
+                        <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}" />
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnViewTask"  Width="60" HorizontalContentAlignment="Center" Background="Red" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TimeItemId}" >Eliminar</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </Window>

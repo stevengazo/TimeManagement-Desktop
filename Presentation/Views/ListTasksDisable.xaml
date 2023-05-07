@@ -5,45 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Tareas Archivadas" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tareas Archivadas" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="#003566">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
         <CommandBinding Command="ApplicationCommands.Delete" Executed="EnableTaskItem" CanExecute=" CanExecuteDeleteTask" />
         <CommandBinding Command="ApplicationCommands.Properties" Executed="EditTaskItem" CanExecute="CanExecuteEditTask" />
     </Window.CommandBindings>
     <Grid>
-        <GroupBox Grid.Row="2" x:Name="groupBox" Header="Lista Tareas" >
-            <ListView  Name="listViewTaskItems" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:dd-MM-yyyy }'}"/>
-                        <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding StatusItem.Name}"/>
-                        <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding PriorityItem.Name}"/>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center">Ver</Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Activar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="Historial de Tareas del Usuario" FontSize="18" Foreground="White"/>
+        <ListView Grid.Row="1"  Name="listViewTaskItems" Margin="10,0,10,10" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:dd-MM-yyyy }'}"/>
+                    <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding StatusItem.Name}"/>
+                    <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding PriorityItem.Name}"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center">Ver</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnEditTaskItem"  Width="60" Background="Green"  Content="Editar" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TaskItemId}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnFinishTaskItem"  Width="60" Background="Blue"  Content="Activar" Foreground="White" Command="ApplicationCommands.Delete" CommandParameter="{Binding TaskItemId}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

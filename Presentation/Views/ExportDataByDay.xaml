@@ -5,70 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Exportado de Datos por Día" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Exportado de Datos por Día" MinHeight="500" Height="500" MinWidth="800" Width="800" WindowStartupLocation="CenterScreen" Background="#003566" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="120" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="140" />
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="0"  Header="Busqueda" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="160" />
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="120" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Fecha de Busqueda" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <Button  Grid.Column="2" Content="Buscar" Margin="5" Click="SearchTask_Click"  />
-                <Button  Grid.Column="3" Content="Limpiar" Margin="5" Click="Clean_Click" />
-                <Button  Grid.Column="4" Content="Exportar" Margin="5"  Click="Export_Click"  />
-            </Grid>
-        </GroupBox>
-        <GroupBox Grid.Row="1"  Header="Lista de Tareas" >
-            <ListView x:Name="listViewTask">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="N° Tarea" Width="80" DisplayMemberBinding="{Binding TaskItemId}"/>
-                        <GridViewColumn Header="Tarea" Width="80" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn Header="Prioridad" Width="80" DisplayMemberBinding="{Binding Priority}"/>
-                        <GridViewColumn Header="Categoria" Width="80" DisplayMemberBinding="{Binding Type}"/>
-                        <GridViewColumn Header="Usuario" Width="80" DisplayMemberBinding="{Binding UserName}"/>
-                        <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}"/>
-                        <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}"/>
-                        <GridViewColumn Header="Inicio" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt }'}"/>
-                        <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}"/>
-                        <GridViewColumn Header="Notas" Width="240" DisplayMemberBinding="{Binding notes}"/>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
-        <GroupBox Grid.Row="2" Header="Empleados">
-            <ListView x:Name="listViewUsersReport">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Id" Width="90" DisplayMemberBinding="{Binding idUser}"/>
-                        <GridViewColumn Header="Nombre" Width="90" DisplayMemberBinding="{Binding name}"/>
-                        <GridViewColumn Header="Apellidos" Width="90" DisplayMemberBinding="{Binding lastname}"/>
-                        <GridViewColumn Header="Dia" Width="80" DisplayMemberBinding="{Binding date, StringFormat='{}{0:dd-MM-yy  }'}"/>
-                        <GridViewColumn Header="Hora" Width="80" DisplayMemberBinding="{Binding hours}"/>
-                        <GridViewColumn Header="Minutos" Width="80" DisplayMemberBinding="{Binding minutes}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="White" >Resumen de Actividades Por Día Laborado</Label>
+        <Grid Grid.Row="1" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+            </Grid.ColumnDefinitions>
+            <Label Foreground="White" Grid.Column="0" Content="Fecha de Busqueda" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+            <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+            <Button  Grid.Column="2" Content="Buscar" Margin="5" Click="SearchTask_Click"  />
+            <Button  Grid.Column="3" Content="Limpiar" Margin="5" Click="Clean_Click" />
+            <Button  Grid.Column="4" Content="Exportar" Margin="5"  Click="Export_Click"  />
+        </Grid>
+        <Label Grid.Row="2" HorizontalAlignment="Center" FontSize="12" Foreground="White" >Labores Registradas en el Día Seleccionado</Label>
+        <ListView x:Name="listViewTask"  Grid.Row="3" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="N° Tarea" Width="80" DisplayMemberBinding="{Binding TaskItemId}"/>
+                    <GridViewColumn Header="Tarea" Width="80" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Prioridad" Width="80" DisplayMemberBinding="{Binding Priority}"/>
+                    <GridViewColumn Header="Categoria" Width="80" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Usuario" Width="80" DisplayMemberBinding="{Binding UserName}"/>
+                    <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}"/>
+                    <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}"/>
+                    <GridViewColumn Header="Inicio" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt }'}"/>
+                    <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}"/>
+                    <GridViewColumn Header="Notas" Width="240" DisplayMemberBinding="{Binding notes}"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Grid.Row="4" HorizontalAlignment="Center" FontSize="12" Foreground="White" > Resumen Por Empleado</Label>
+        <ListView x:Name="listViewUsersReport" Grid.Row="5" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="90" DisplayMemberBinding="{Binding idUser}"/>
+                    <GridViewColumn Header="Nombre" Width="90" DisplayMemberBinding="{Binding name}"/>
+                    <GridViewColumn Header="Apellidos" Width="90" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Dia" Width="80" DisplayMemberBinding="{Binding date, StringFormat='{}{0:dd-MM-yy  }'}"/>
+                    <GridViewColumn Header="Hora" Width="80" DisplayMemberBinding="{Binding hours}"/>
+                    <GridViewColumn Header="Minutos" Width="80" DisplayMemberBinding="{Binding minutes}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

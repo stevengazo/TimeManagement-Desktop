@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
         mc:Ignorable="d"
-        Title="Tiempos Diarios Registrados" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tiempos Diarios Registrados" MinWidth="800" MinHeight="450" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="#003566" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
     </Window.CommandBindings>
@@ -14,48 +14,42 @@
             <RowDefinition Height="60" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="0"  Header="Busqueda" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="160" />
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="120" />
-                    <ColumnDefinition Width="120" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Fecha de Busqueda" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <Button  Grid.Column="2" Content="Buscar" Margin="5" Click="SearchTask_Click"  />
-                <Button  Grid.Column="3" Content="Limpiar" Margin="5" Click="Clean_Click" />
-                <Label  Name="lblTiempo" Grid.Column="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-                
-            </Grid>
-
-        </GroupBox>
-        <GroupBox Grid.Row="1"  Header="Lista de Tareas" >
-            <ListView x:Name="listViewTask">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="N° Tarea" Width="80" DisplayMemberBinding="{Binding TaskItemId}"/>
-                        <GridViewColumn Header="Tarea" Width="80" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn Header="Prioridad" Width="80" DisplayMemberBinding="{Binding Priority}"/>
-                        <GridViewColumn Header="Categoria" Width="80" DisplayMemberBinding="{Binding Type}"/>
-                        <GridViewColumn Header="Usuario" Width="80" DisplayMemberBinding="{Binding UserName}"/>
-                        <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}"/>
-                        <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}"/>
-                        <GridViewColumn Header="Inicio" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt }'}"/>
-                        <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}"/>
-                        <GridViewColumn Header="Notas" Width="240" DisplayMemberBinding="{Binding notes}"/>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="170" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Fecha de Busqueda" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="White" />
+            <DatePicker Name="dtpDateSelected" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+            <Button  Grid.Column="2" Content="Buscar" Margin="15" Click="SearchTask_Click"   />
+            <Button  Grid.Column="3" Content="Limpiar" Margin="15" Click="Clean_Click" />
+            <Label  Name="lblTiempo" Grid.Column="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></Label>
+        </Grid>
+        <ListView x:Name="listViewTask" Grid.Row="1" Margin="8">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="N° Tarea" Width="80" DisplayMemberBinding="{Binding TaskItemId}"/>
+                    <GridViewColumn Header="Tarea" Width="80" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Prioridad" Width="80" DisplayMemberBinding="{Binding Priority}"/>
+                    <GridViewColumn Header="Categoria" Width="80" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Usuario" Width="80" DisplayMemberBinding="{Binding UserName}"/>
+                    <GridViewColumn Header="Horas" Width="40" DisplayMemberBinding="{Binding Hours}"/>
+                    <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}"/>
+                    <GridViewColumn Header="Inicio" Width="111" DisplayMemberBinding="{Binding StartTime, StringFormat='{}{0:h:mm tt }'}"/>
+                    <GridViewColumn Header="Final" Width="111" DisplayMemberBinding="{Binding EndTime, StringFormat='{}{0:h:mm tt }'}"/>
+                    <GridViewColumn Header="Notas" Width="240" DisplayMemberBinding="{Binding notes}"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnViewTask"  Width="50"  Command="ApplicationCommands.Open" CommandParameter="{Binding TaskItemId}"  HorizontalContentAlignment="Center" >Ver</Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
