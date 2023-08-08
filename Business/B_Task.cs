@@ -11,6 +11,7 @@ using Microsoft.Identity.Client;
 using System.Security.RightsManagement;
 using System.Windows;
 using System.Diagnostics.Eventing.Reader;
+using System.Collections;
 
 namespace Business
 {
@@ -108,11 +109,22 @@ namespace Business
 				{
 					if (GetFullList)
 					{
-						return db.TaskItems.Where(T => T.UserId == idUser).Include(C => C.CategoryItem).Include(P => P.PriorityItem).Include(S => S.StatusItem).ToList();
+						return db.TaskItems
+							.Where(T => T.UserId == idUser && T.CreationDate.Year == DateTime.Now.Year)
+                            .OrderBy(T => T.CategoryItemId)
+                            .Include(C => C.CategoryItem)
+							.Include(P => P.PriorityItem)
+							.Include(S => S.StatusItem)
+							.ToList();
 					}
 					else
 					{
-						return db.TaskItems.Where(T => T.UserId == idUser && T.IsEnable).Include(C => C.CategoryItem).Include(P => P.PriorityItem).Include(S => S.StatusItem).ToList();
+						return db.TaskItems							
+							.Where(T => T.UserId == idUser && T.IsEnable)
+							.Include(C => C.CategoryItem)
+							.Include(P => P.PriorityItem)
+							.Include(S => S.StatusItem)
+							.ToList();
 					}					
 				}
 			}
@@ -187,5 +199,27 @@ namespace Business
 				return -5;
 			}
 		}
-	}
+
+        public static List<TaskItem> SearchTaskByTitle(string text)
+        {
+            try
+            {
+                using (TimeDatabaseContext db = new())
+                {
+                    var query = (from t in db.TaskItems
+								 where t.Title.Contains(text) select t)
+                                 .OrderBy(T => T.CategoryItemId)
+                            .Include(C => C.CategoryItem)
+                            .Include(P => P.PriorityItem)
+                            .Include(S => S.StatusItem)
+                                 .ToList();
+					return query;
+				}
+            }
+            catch (Exception f)
+            {
+				return null;
+            }
+        }
+    }
 }

@@ -21,38 +21,43 @@ namespace Presentation
 			InitializeComponent();
 			LoadCredentialsAsync();
 		}
+
+		private async void login()
+		{
+            try
+            {
+                var id = txtUsuario.Text;
+                var pass = txtPassword.Password;
+                int idUsuario = int.Parse(id);
+                bool isValid = B_User.LogingAsync(idUsuario, pass).Result;
+                if (isValid)
+                {
+                    TempData.CurrentUser = await B_User.GetUserAsync(idUsuario);
+                    TempData.idUser = idUsuario;
+                    var viewHome = new Home();
+                    // Save values
+                    bool RememberPass = ckBPassword.IsChecked.Value;
+                    if (RememberPass)
+                    {
+                        await SaveCredentialsAsync(idUsuario.ToString(), pass);
+                    }
+                    this.Hide();
+                    viewHome.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Datos Invalidos");
+                }
+            }
+            catch (Exception ef)
+            {
+                MessageBox.Show($"Error: {ef.Message}");
+            }
+        }
 		private async void OnLoging(object sender, RoutedEventArgs e)
 		{
-			try
-			{
-				var id = txtUsuario.Text;
-				var pass = txtPassword.Password;
-				int idUsuario = int.Parse(id);
-				bool isValid = B_User.LogingAsync(idUsuario, pass).Result;
-				if (isValid)
-				{
-					TempData.CurrentUser = await B_User.GetUserAsync(idUsuario);
-					TempData.idUser = idUsuario;
-					var viewHome = new Home();
-					// Save values
-					bool RememberPass = ckBPassword.IsChecked.Value;
-					if (RememberPass)
-					{
-						await SaveCredentialsAsync(idUsuario.ToString(),pass);
-					}
-					this.Hide();
-					viewHome.Show();										
-					this.Close();
-				}
-				else
-				{
-					MessageBox.Show("Datos Invalidos");
-				}
-			}
-			catch (Exception ef)
-			{
-				MessageBox.Show($"Error: {ef.Message}");
-			}
+			login();	
 		}
 		private async Task SaveCredentialsAsync(string user, string pass)
 		{
@@ -105,5 +110,22 @@ namespace Presentation
 				MessageBox.Show(f.Message);
 			}
 		}
-	}
+
+        private async void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+			if (e.Key == System.Windows.Input.Key.Enter)
+			{
+				login();
+			}
+
+        }
+
+        private async void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+			if(e.Key == System.Windows.Input.Key.Enter)
+			{
+                login();
+            }
+        }
+    }
 }

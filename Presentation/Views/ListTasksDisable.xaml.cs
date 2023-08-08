@@ -88,6 +88,34 @@ namespace Presentation.Views
 				MessageBox.Show(f.Message);
 			}
 		}
-		#endregion
-	}
+        #endregion
+
+        private async void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+			if (string.IsNullOrEmpty(txtBuscador.Text))
+			{
+				MessageBox.Show("No hay informaciion para buscar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+			}
+			else
+			{
+				var list = B_Task.SearchTaskByTitle(txtBuscador.Text);
+				if (list.Count == 0)
+				{
+                    MessageBox.Show("No hay coincidencias", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+				}
+				else
+				{
+					listViewTaskItems.ItemsSource = list;
+				}
+			}
+        }
+
+        private async void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            listViewTaskItems.ItemsSource = await B_Task.ListTaskItemsAsync(TempData.CurrentUser.UserId, true);
+			txtBuscador.Text = string.Empty;
+
+        }
+    }
 }

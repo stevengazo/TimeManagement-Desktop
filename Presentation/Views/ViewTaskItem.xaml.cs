@@ -152,31 +152,36 @@ namespace Presentation.Views
 		{
 			if(viewTaskItem.TimeItems != null)
 			{
-				TimeSpan totalTime = new();
+				int hours = 0;
+				int minutes = 0;
+				TimeSpan totalTime =new();
 				List<TimeItemWithQuantity> listTimes = new() ;
 				int daysQuantity = 0;
 				daysQuantity = viewTaskItem.TimeItems.DistinctBy(D=>D.StartTime.Date).Count();
 					
 				foreach (var item in viewTaskItem.TimeItems)
 				{
-
 					TimeSpan TimeWorked = (item.EndTime - item.StartTime);
-					var Hours = TimeWorked.Hours;
-					var Minutes =  TimeWorked.Minutes;
 
 					TimeItemWithQuantity i = new() {
 						TimeItemId = item.TimeItemId,
-						Hours = Hours,
-						Minutes = Minutes,
+						Hours = TimeWorked.Hours,
+						Minutes = TimeWorked.Minutes,
 						StartTime = item.StartTime,
 						EndTime = item.EndTime	,
 						Notes = item.Notes
 					};
-					totalTime = totalTime + TimeWorked;
+					minutes = minutes + TimeWorked.Minutes;
+					hours = hours + TimeWorked.Hours;
+					if (minutes >= 59)
+					{
+						hours = hours + Convert.ToInt32((minutes / 60));
+						minutes = minutes - 59;
+					}
 					listTimes.Add(i);
 				}
 
-				lblHoras.Content = $"{totalTime.Hours}:{totalTime.Minutes} Usadas";
+				lblHoras.Content = $"{hours}:{minutes} Usadas";
 				lblDias.Content = $"{daysQuantity} Días laborados";
 				listViewTimeItems.ItemsSource = listTimes;
 			}
@@ -193,37 +198,59 @@ namespace Presentation.Views
 		{
 			await CleanInput();
 		}
+
+		private async void AddTime()
+		{
+			try
+			{
+                var initialHour = int.Parse(cbInHour.Text);
+                var initialMinutes = int.Parse(cbInMinutes.Text);
+                var finishHour = int.Parse(cbFinHour.Text);
+                var finishMinutes = int.Parse(cbFinMinutes.Text);
+
+                var tmpTimeMinutes = (initialHour * 60) + initialMinutes;
+                var tmptimeFinalMinutes = (finishHour * 60) + finishMinutes;
+                if (tmptimeFinalMinutes < tmpTimeMinutes)
+                {
+                    MessageBox.Show("La hora inicial no puede ser posterior a la hora final");
+                    await CleanInput();
+                }
+                else
+                {
+                    TimeSpan tpInit = new TimeSpan(initialHour, initialMinutes, 0);
+                    TimeSpan tpFinish = new TimeSpan(finishHour, finishMinutes, 0);
+                    TimeItem timeItem = new TimeItem()
+                    {
+                        EndTime = DateTime.Today + tpFinish,
+                        StartTime = DateTime.Today + tpInit,
+                        Notes = txtNotes.Text,
+                        TaskItemId = viewTaskItem.TaskItemId
+                    };
+                    var Status = await B_Time.AddTime(timeItem);
+                    if (Status)
+                    {
+                        await CleanInput();
+                        LoadTask();
+                    }
+                }
+            }
+			catch (Exception f)
+			{
+				MessageBox.Show(f.Message, "Info", MessageBoxButton.OK);
+			}
+        }
+
 		private async void AddTime_Click(object sender, RoutedEventArgs e)
 		{
-			var initialHour = int.Parse( cbInHour.Text);
-			var initialMinutes = int.Parse(cbInMinutes.Text);
-			var finishHour = int.Parse(cbFinHour.Text);
-			var finishMinutes = int.Parse(cbFinMinutes.Text);
-
-			var tmpTimeMinutes = (initialHour * 60) + initialMinutes;
-			var tmptimeFinalMinutes = (finishHour * 60) + finishMinutes;
-			if(tmptimeFinalMinutes < tmpTimeMinutes)
-			{
-				MessageBox.Show("La hora inicial no puede ser posterior a la hora final");
-				await CleanInput();
-			}
-			else
-			{
-				TimeSpan tpInit = new TimeSpan(initialHour, initialMinutes, 0);
-				TimeSpan tpFinish = new TimeSpan(finishHour, finishMinutes, 0);
-				TimeItem timeItem = new TimeItem() {
-					EndTime = DateTime.Today + tpFinish,
-					StartTime = DateTime.Today + tpInit,
-					Notes = txtNotes.Text,
-					TaskItemId = viewTaskItem.TaskItemId
-				};
-				var Status =await  B_Time.AddTime(timeItem);
-				if (Status)
-				{
-					await CleanInput();
-					LoadTask();
-				}			
-			}
+			AddTime();
 		}
+
+        private void txtNotes_KeyDown(object sender, KeyEventArgs e)
+        {
+			if(e.Key == Key.Enter)
+			{
+				AddTime();
+			}
+        }
     }
 }

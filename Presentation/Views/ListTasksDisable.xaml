@@ -14,14 +14,29 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="Historial de Tareas del Usuario" FontSize="18" Foreground="White"/>
-        <ListView Grid.Row="1"  Name="listViewTaskItems" Margin="10,0,10,10" >
+        <Grid Margin="10,0,0,0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="90" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Buscar Titulo" Foreground="White" ></Label>
+            <TextBox x:Name="txtBuscador" Grid.Column="1" Margin="5" />
+            <Button x:Name="btnBuscar" Margin="5" Grid.Column="2" HorizontalAlignment="Left" Content="Buscar" Width="80" Click="btnBuscar_Click" />
+            <Button x:Name="btnLimpiar" Margin="5" Grid.Column="3" HorizontalAlignment="Left" Content="Limpiar" Width="80"  Click="btnLimpiar_Click" />
+
+        </Grid>
+        <ListView Grid.Row="2"  Name="listViewTaskItems" Margin="10,0,10,10" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Titulo" Width="111" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:dd-MM-yyyy }'}"/>
+                    <GridViewColumn Header="Fecha" Width="111" DisplayMemberBinding="{Binding CreationDate, StringFormat='{}{0:MMMM-yyyy }'}"/>
+                    <GridViewColumn Header="Categoria" Width="111" DisplayMemberBinding="{Binding CategoryItem.Name}"/>
                     <GridViewColumn Header="Estado" Width="111" DisplayMemberBinding="{Binding StatusItem.Name}"/>
                     <GridViewColumn Header="Prioridad" Width="111" DisplayMemberBinding="{Binding PriorityItem.Name}"/>
                     <GridViewColumn>
