@@ -16,7 +16,8 @@ namespace Models
 		public int TaskItemId { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
-		public DateTime CreationDate { get; set; }
+        public int Unit { get; set; }
+        public DateTime CreationDate { get; set; }
 		public DateTime LastEditionDate { get; set; }
 		public bool IsEnable { get; set; }	
 		public CategoryItem CategoryItem { get; set; }

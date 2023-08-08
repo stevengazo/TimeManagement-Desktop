@@ -114,6 +114,7 @@ namespace Presentation
 			txtDescription.Text = string.Empty;
 			cbCategory.SelectedIndex = -1;
 			cbPriority.SelectedIndex = -1;
+			txtNumber.Text = string.Empty;
 			cbStatus.SelectedIndex = -1;
 			dptDate.SelectedDate = DateTime.Today;
 		}
@@ -132,6 +133,7 @@ namespace Presentation
 					TaskItem.Description = txtDescription.Text;
 					TaskItem.CreationDate = (DateTime)dptDate.SelectedDate;
 					TaskItem.LastEditionDate = DateTime.Today;
+					TaskItem.Unit = int.Parse(txtNumber.Text);
 					TaskItem.StatusItemId = (from s in StatusItems where s.Name.Equals(cbStatus.Text) select s.StatusItemId).FirstOrDefault();
 					TaskItem.PriorityItemId = (from s in PrioritiesItems where s.Name.Equals(cbPriority.Text) select s.PriorityItemId).FirstOrDefault();
 					TaskItem.CategoryItemId = (from s in categoryItems where s.Name.Equals(cbCategory.Text) select s.CategoryItemId).FirstOrDefault();

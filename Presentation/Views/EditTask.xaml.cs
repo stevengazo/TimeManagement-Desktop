@@ -70,6 +70,7 @@ namespace Presentation.Views
 				TaskItem = await B_Task.GetTaskItemAsync(TempData.TaskItemId);
 				if (TaskItem != null)
 				{
+					txtNumber.Text = TaskItem.Unit.ToString();
 					txtTitulo.Text = TaskItem.Title;
 					txtDescripción.Text = TaskItem.Description;
 					datePickerCreationDate.SelectedDate = TaskItem.CreationDate;
@@ -87,56 +88,68 @@ namespace Presentation.Views
 		}
 		private async void UpdateTask_Click(object sender, RoutedEventArgs e)
 		{
-			bool isValid = await ValidateData();
-			if(!isValid) {
-				MessageBox.Show("Verifique la información");
-			}
-			else
+
+			try
 			{
-				// Get Category
-				var Category = (from i in this.categoryItems
-								where i.Name.Equals(cbCategory.Text)
-								select i).FirstOrDefault();
-				var priority = (from i in this.priorityItems
-								where i.Name.Equals(cbPriority.Text)
-								select i).FirstOrDefault();
-				var idUser = (from i in this.usersDic
-							  where i.Value== cbEmployee.Text
-							  select i.Key).FirstOrDefault();
-				var status = (from s in this.statusItems
-							  where s.Name.Equals(cbStatus.Text)
-							  select s
-							  ).FirstOrDefault();
-							  
-				if(TempData.CurrentUser.IsAdmin)
-				{
-					TaskItem.CreationDate = datePickerCreationDate.SelectedDate.Value;
-					TaskItem.UserId = idUser;
-				}
-				TaskItem.Title = txtTitulo.Text;
-				TaskItem.Description = txtDescripción.Text;
-				TaskItem.CategoryItemId = Category.CategoryItemId;
-				TaskItem.CategoryItem = Category;
-				TaskItem.PriorityItemId = priority.PriorityItemId;
-				TaskItem.PriorityItem = priority;
-				TaskItem.StatusItem = status;
-				TaskItem.StatusItemId = status.StatusItemId;
-				TaskItem.UserId = idUser;
-				TaskItem.User =await B_User.GetUserAsync(idUser);
+                bool isValid = await ValidateData();
+                if (!isValid)
+                {
+                    MessageBox.Show("Verifique la información");
+                }
+                else
+                {
+                    // Get Category
+                    var Category = (from i in this.categoryItems
+                                    where i.Name.Equals(cbCategory.Text)
+                                    select i).FirstOrDefault();
+                    var priority = (from i in this.priorityItems
+                                    where i.Name.Equals(cbPriority.Text)
+                                    select i).FirstOrDefault();
+                    var idUser = (from i in this.usersDic
+                                  where i.Value == cbEmployee.Text
+                                  select i.Key).FirstOrDefault();
+                    var status = (from s in this.statusItems
+                                  where s.Name.Equals(cbStatus.Text)
+                                  select s
+                                  ).FirstOrDefault();
 
-				bool Update = await B_Task.EditTaskItemAsync(TaskItem);
-				if(Update)
-				{
-					MessageBox.Show("Tarea Actualizada");
-					this.Close();
-				}
-				else
-				{
-					MessageBox.Show("Error");
-					this.Close();
-				}
+                    if (TempData.CurrentUser.IsAdmin)
+                    {
+                        TaskItem.CreationDate = datePickerCreationDate.SelectedDate.Value;
+                        TaskItem.UserId = idUser;
+                    }
+                    TaskItem.Title = txtTitulo.Text;
+                    TaskItem.Description = txtDescripción.Text;
+                    TaskItem.CategoryItemId = Category.CategoryItemId;
+                    TaskItem.CategoryItem = Category;
+                    TaskItem.PriorityItemId = priority.PriorityItemId;
+                    TaskItem.PriorityItem = priority;
+                    TaskItem.StatusItem = status;
+                    TaskItem.StatusItemId = status.StatusItemId;
+                    TaskItem.UserId = idUser;
+                    TaskItem.Unit = Convert.ToInt32(txtNumber.Text);
+                    TaskItem.User = await B_User.GetUserAsync(idUser);
 
-			}
+                    bool Update = await B_Task.EditTaskItemAsync(TaskItem);
+                    if (Update)
+                    {
+                        MessageBox.Show("Tarea Actualizada");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error");
+                        this.Close();
+                    }
+
+                }
+            }
+			catch (Exception f)
+			{
+                MessageBox.Show($"Verifique la información. Error {f.Message}","Administracion");
+
+            }
+			
 		}
 
 		private async Task<bool> ValidateData()
@@ -167,7 +180,11 @@ namespace Presentation.Views
 				{
 					return false;
 				}
-				else
+                else if (!int.TryParse(txtNumber.Text,out int id))
+                {
+                    return false;
+                }
+                else
 				{
 					return true;
 				}
