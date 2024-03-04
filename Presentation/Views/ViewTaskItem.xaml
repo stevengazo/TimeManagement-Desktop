@@ -142,6 +142,10 @@
                         <GridViewColumn Header="Horas" Width="45" DisplayMemberBinding="{Binding Hours}" />
                         <GridViewColumn Header="Minutos" Width="50" DisplayMemberBinding="{Binding Minutes}" />
                         <GridViewColumn Header="Información" Width="100" DisplayMemberBinding="{Binding Notes}" />
+          
+
+
+
                         <GridViewColumn Header="Acción">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -155,7 +159,13 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <!--<GridViewColumn Header="Acción"> <GridViewColumn.CellTemplate> <DataTemplate> <Button Name="BtnEditTime"  Width="60" HorizontalContentAlignment="Center" Background="Green" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TimeItemId}" >Editar</Button> </DataTemplate></GridViewColumn.CellTemplate></GridViewColumn>                        -->
+                        <GridViewColumn Header="Acción">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnEditTime"  Width="60" HorizontalContentAlignment="Center" Background="Green" Foreground="White" Command="ApplicationCommands.Properties" CommandParameter="{Binding TimeItemId}" >Editar</Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

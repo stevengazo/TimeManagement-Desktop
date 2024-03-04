@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
+        
         mc:Ignorable="d"
-        Title="Inicio" MinHeight="450" MinWidth="750" Height="450" Width="750" WindowStartupLocation="CenterScreen" Background="#001d3d" >
+        Title="Inicio" MinHeight="450" MinWidth="750" Height="500" Width="800" WindowStartupLocation="CenterScreen" Background="#001d3d" >
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="ViewTaskItem" CanExecute=" CanExecuteViewTask" />
         <CommandBinding Command="ApplicationCommands.Delete" Executed="DisableTaskItem" CanExecute=" CanExecuteDeleteTask" />

@@ -30,8 +30,7 @@ namespace Presentation.Views
 		{
 			InitializeComponent();
 			loadDataAsync();
-			loadCategories();
-			LoadPriorities();
+	
 		}
 
 
@@ -89,38 +88,8 @@ namespace Presentation.Views
 		}
 		#endregion
 		
-		private async Task LoadPriorities()
-		{
-			try
-			{
-				PrioritiesItems = await B_Priority.ListPrioritiesAsync();
-				foreach (var item in PrioritiesItems)
-				{
-					cbPriority.Items.Add(item.Name);
-				}
-			}
-			catch (Exception f)
-			{
-				MessageBox.Show($"Error: {f.Message}");
-				this.Close();
-			}
-		}
-		private async Task loadCategories()
-		{
-			try
-			{
-				categoryItems = await B_Category.ListCategoriesAsync();
-				foreach (var item in categoryItems)
-				{
-					cbCategory.Items.Add(item.Name);
-				}
-			}
-			catch (Exception f)
-			{
-				MessageBox.Show($"Error {f.Message}");
-				this.Close();
-			}
-		}
+
+		
 	
 		private async Task LoadTasks()
 		{

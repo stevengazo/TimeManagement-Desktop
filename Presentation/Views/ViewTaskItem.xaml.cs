@@ -39,11 +39,18 @@ namespace Presentation.Views
 		private async void EditTimeItem(object target, ExecutedRoutedEventArgs args)
 		{
 			try
-			{				
-				TempData.TimeItemId = int.Parse(args.Parameter.ToString());
-				EditTime editTime = new();
-				editTime.ShowDialog();
-				LoadTask();
+			{			
+				if(TempData.CurrentUser.IsAdmin)
+				{
+                    TempData.TimeItemId = int.Parse(args.Parameter.ToString());
+                    EditTime editTime = new();
+                    editTime.ShowDialog();
+                    LoadTask();
+				}
+				else
+				{
+					MessageBox.Show("Solo administradores pueden realizar cambios", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				}
 			}
 			catch (Exception f)
 			{

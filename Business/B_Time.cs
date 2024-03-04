@@ -120,7 +120,25 @@ namespace Business
 				return false;
 			}
 		}
-		public static async Task<bool> DeleteTime(TimeItem timeItem)
+        public static bool UpdateTime(TimeItem timeItem)
+        {
+
+            try
+            {
+                using (TimeDatabaseContext db = new())
+                {
+                    db.TimeItems.Update(timeItem);
+					db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show($"Error: {f.Message}");
+                return false;
+            }
+        }
+        public static async Task<bool> DeleteTime(TimeItem timeItem)
 		{
 			try
 			{
@@ -137,7 +155,15 @@ namespace Business
 				return false;
 			}
 		}
-		public static async Task<TimeItem> GetTimeItemAsync(int id)
+        public static TimeItem GetTimeItem(int id)
+        {
+            using (var db = new TimeDatabaseContext())
+            {
+                var element =  (from i in db.TimeItems where i.TimeItemId == id select i).FirstOrDefault();
+                return element;
+            }
+        }
+        public static async Task<TimeItem> GetTimeItemAsync(int id)
 		{
 			using (var db = new TimeDatabaseContext())
 			{
